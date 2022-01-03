@@ -1,7 +1,7 @@
 import { Text, View, TouchableHighlight } from 'react-native';
+import { styles } from './styles';
 
 const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
-
 
     const reset = () => {
         setScore(0)
@@ -10,7 +10,7 @@ const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <Text>Has conseguido {score} puntos</Text>
             <Text>El porcentaje de respuestas acertadas es {((score / 10) * 100).toFixed(2)}%</Text>
             <TouchableHighlight onPress={reset}>
