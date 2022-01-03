@@ -11,17 +11,16 @@ const Game = ({ setScore, currentQuiz, setCurrentQuiz, setFinished }) => {
     const [quizzes, setQuizzes] = useState([]);
     const [answers, setAnswers] = useState({})
 
-    // TODO descomentar
-    // useEffect(() => {
-    //     if (quizzes.length === 0) {
-    //         fetch(URL)
-    //             .then(res => res.json())
-    //             .then(json => { setQuizzes(json) })
-    //     }
-    // }, [quizzes]);
+    useEffect(() => {
+        if (quizzes.length === 0) {
+            fetch(URL)
+                .then(res => res.json())
+                .then(json => { setQuizzes(json) })
+        }
+    }, [quizzes]);
 
     return (
-        <View style={styles.container}>
+        <View>
             {quizzes.length > 0 && (
                 <Play
                     setScore={setScore}

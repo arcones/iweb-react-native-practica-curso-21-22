@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import jordi from './img/jordi.jpeg'
 import mrx from './img/mrx.jpeg'
 import { TouchableHighlight, Text, View, Image, TextInput } from 'react-native';
+import { styles } from './styles';
 
 const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes, answers, setAnswers }) => {
-
-    // const contextValue = useContext(LangContext);
 
     const [disabledNext, setDisabledNext] = useState(false);
     const [disabledBack, setDisabledBack] = useState(true);
@@ -62,6 +61,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     const getAuthorPhotoIfPossible = () => {
+        // TODO reinstaurar todo esto
         // return quizzes[currentQuiz].author && quizzes[currentQuiz].author.photo ? quizzes[currentQuiz].author.photo.url : mrx
         return mrx
     }
@@ -90,10 +90,6 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         e.target.src = jordi
     }
 
-    let quizButtons = quizzes.map((item, index) => {
-        return <TouchableHighlight key={index} onPress={() => renderSpecificQuiz(index)}><Text>{index + 1}</Text></TouchableHighlight>
-    })
-
     const onEnterKey = (event) => {
         if (event.key === "Enter") {
             currentQuiz === (quizzes.length - 1) ? submit() : next()
@@ -109,6 +105,10 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         };
     });
 
+    useEffect(() => {
+        updateButtons()
+    });
+
     const reboot = () => {
         setQuizzes([])
         setScore(0)
@@ -121,28 +121,27 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         setInputs(merged)
     }
 
+
+
     return (
-            <View onLoad={updateButtons} className="contained-text">
-                <Text>Trivial</Text>
-                <View>
-                    {quizButtons}
-                </View>
-                <Text>Pregunta {currentQuiz + 1}</Text>
-                <Text>{truncate(quizzes[currentQuiz].question)}</Text>
-                <Image source={getAttachmentURLIfPossible()} onError={e => fallbackAttachmentPhoto(e)} alt=''/>
-                <TextInput id="answer" value={inputs.get(currentQuiz)} onChange={e => onChangeDo(e)} onKeyPress={event => onEnterKey(event)} placeholder="Escriba su respuesta" />
-                <View>
-                    <Text>Autor: {getAuthorNameIfPossible()}</Text>
-                    <Image source={mrx} onError={e => fallbackAuthorPhoto(e)} alt=''/>
-                    <Text>Tiempo restante para acabar el cuestionario: {timeLeft}</Text>
-                </View>
-                <View>
-                    <TouchableHighlight onPress={back} disabled={disabledBack}><Text>Anterior</Text></TouchableHighlight>
-                    <TouchableHighlight onClick={next} disabled={disabledNext}><Text>Siguiente</Text></TouchableHighlight>
-                </View>
-                <TouchableHighlight onClick={submit}><Text>Enviar</Text></TouchableHighlight>
-                <TouchableHighlight onClick={reboot}><Text>Reiniciar</Text></TouchableHighlight>
+        <View style={styles.container}>
+            <Text style={styles.headline}>Trivial</Text>
+            <Text style={styles.headline}>Pregunta {currentQuiz + 1}</Text>
+            <Text style={styles.quizQuestion}>{truncate(quizzes[currentQuiz].question)}</Text>
+            <Image source={getAttachmentURLIfPossible()} onError={e => fallbackAttachmentPhoto(e)} alt='' />
+            <TextInput id="answer" value={inputs.get(currentQuiz)} onChange={e => onChangeDo(e)} onKeyPress={event => onEnterKey(event)} placeholder="Escriba su respuesta" />
+            <View  style={styles.container}>
+                <Text>Autor: {getAuthorNameIfPossible()}</Text>
+                <Image style={styles.tinyImage} source={mrx} onError={e => fallbackAuthorPhoto(e)} alt='' />
+                <Text>Tiempo restante para acabar el cuestionario: {timeLeft}</Text>
             </View>
+            <View style={{flexDirection: 'row'}}>
+                <TouchableHighlight style={styles.quizActionTouchable} onPress={back} disabled={disabledBack}><Text style={styles.quizActionTouchableText}>Anterior</Text></TouchableHighlight>
+                <TouchableHighlight style={styles.quizActionTouchable} onClick={next} disabled={disabledNext}><Text style={styles.quizActionTouchableText}>Siguiente</Text></TouchableHighlight>
+            </View>
+            <TouchableHighlight style={styles.quizActionTouchable} onClick={submit}><Text style={styles.quizActionTouchableText}>Enviar</Text></TouchableHighlight>
+            <TouchableHighlight style={styles.quizActionTouchable} onClick={reboot}><Text style={styles.quizActionTouchableText}>Reiniciar</Text></TouchableHighlight>
+        </View>
     )
 }
 

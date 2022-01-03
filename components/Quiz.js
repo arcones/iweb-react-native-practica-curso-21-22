@@ -7,7 +7,7 @@ const Quiz = () => {
 
     const [score, setScore] = useState(0);
     const [currentQuiz, setCurrentQuiz] = useState(0);
-    const [finished, setFinished] = useState(true); //TODO change to true!
+    const [finished, setFinished] = useState(false);
 
     return (
         <View>
