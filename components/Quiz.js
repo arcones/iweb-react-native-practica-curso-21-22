@@ -1,4 +1,3 @@
-
 import Game from './Game';
 import Scores from './Scores';
 import { useState } from 'react';
@@ -8,7 +7,7 @@ const Quiz = () => {
 
     const [score, setScore] = useState(0);
     const [currentQuiz, setCurrentQuiz] = useState(0);
-    const [finished, setFinished] = useState(false);
+    const [finished, setFinished] = useState(true); //TODO change to true!
 
     return (
         <View>

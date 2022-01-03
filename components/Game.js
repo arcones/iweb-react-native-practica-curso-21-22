@@ -1,8 +1,9 @@
 import { useState } from "react";
-import QuizGame from './QuizGame';
-import EmptyQuiz from './EmptyQuiz';
+import Play from './Play';
+import NoQuizzes from './NoQuizzes';
 import { useEffect } from "react";
 import { View } from 'react-native'
+
 
 const Game = ({ setScore, currentQuiz, setCurrentQuiz, setFinished }) => {
 
@@ -10,18 +11,19 @@ const Game = ({ setScore, currentQuiz, setCurrentQuiz, setFinished }) => {
     const [quizzes, setQuizzes] = useState([]);
     const [answers, setAnswers] = useState({})
 
-    useEffect(() => {
-        if (quizzes.length === 0) {
-            fetch(URL)
-                .then(res => res.json())
-                .then(json => { setQuizzes(json) })
-        }
-    }, [quizzes]);
+    // TODO descomentar
+    // useEffect(() => {
+    //     if (quizzes.length === 0) {
+    //         fetch(URL)
+    //             .then(res => res.json())
+    //             .then(json => { setQuizzes(json) })
+    //     }
+    // }, [quizzes]);
 
     return (
-        <View>
+        <View style={styles.container}>
             {quizzes.length > 0 && (
-                <QuizGame
+                <Play
                     setScore={setScore}
                     currentQuiz={currentQuiz}
                     setCurrentQuiz={setCurrentQuiz}
@@ -33,7 +35,7 @@ const Game = ({ setScore, currentQuiz, setCurrentQuiz, setFinished }) => {
                 />
             )}
             {quizzes.length <= 0 && (
-                <EmptyQuiz />
+                <NoQuizzes />
             )}
         </View>
     )

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import jordi from './img/jordi.jpeg'
 import mrx from './img/mrx.jpeg'
-import { StyleSheet, TouchableHighlight, Text, View, Image, TextInput } from 'react-native';
+import { TouchableHighlight, Text, View, Image, TextInput } from 'react-native';
 
-const QuizGame = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes, answers, setAnswers }) => {
+const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes, answers, setAnswers }) => {
 
     // const contextValue = useContext(LangContext);
 
@@ -146,4 +146,4 @@ const QuizGame = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished,
     )
 }
 
-export default QuizGame
+export default Play
