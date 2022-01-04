@@ -1,41 +1,35 @@
-import { useState } from "react";
-import Play from './Play';
-import NoQuizzes from './NoQuizzes';
-import { useEffect } from "react";
+import Game from './Game';
+import Scores from './Scores';
+import { useState } from 'react';
+import { Flex } from "@react-native-material/core";
 
+const Game = () => {
 
-const Game = ({ setScore, currentQuiz, setCurrentQuiz, setFinished }) => {
-
-    const URL = 'https://core.dit.upm.es/api/quizzes/random10wa?token=2bca751d84825b1e6c2a'
-    const [quizzes, setQuizzes] = useState([]);
-    const [answers, setAnswers] = useState({})
-
-    useEffect(() => {
-        if (quizzes.length === 0) {
-            fetch(URL)
-                .then(res => res.json())
-                .then(json => { setQuizzes(json) })
-        }
-    }, [quizzes]);
+    const [score, setScore] = useState(0);
+    const [currentQuiz, setCurrentQuiz] = useState(0);
+    const [finished, setFinished] = useState(false);
 
     return (
-        <>
-            {quizzes.length > 0 && (
-                <Play
+        <Flex fill>
+            {!finished && (
+                <Game
+                    score={score}
                     setScore={setScore}
                     currentQuiz={currentQuiz}
                     setCurrentQuiz={setCurrentQuiz}
-                    quizzes={quizzes}
                     setFinished={setFinished}
-                    setQuizzes={setQuizzes}
-                    answers={answers}
-                    setAnswers={setAnswers}
                 />
             )}
-            {quizzes.length <= 0 && (
-                <NoQuizzes />
+
+            {finished && (
+                <Scores
+                    score={score}
+                    setFinished={setFinished}
+                    setScore={setScore}
+                    setCurrentQuiz={setCurrentQuiz}
+                />
             )}
-        </>
+        </Flex>
     )
 }
 
