@@ -101,8 +101,9 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
 
     useEffect(() => {
         let mounted = true;
+        let interval;
         if (mounted) {
-            const interval = setInterval(() => {
+            interval = setInterval(() => {
                 setTimeLeft((prevTimeLeft) => prevTimeLeft === 0 ? submit() : prevTimeLeft - 1);
             }, 1000);
         }
