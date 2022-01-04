@@ -30,14 +30,12 @@ const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
     }
 
     return (
-        <>
-            <Stack style={{ margin: 56 }} fill center spacing={4}>
-                <Text variant="h5">Has conseguido {score} puntos</Text>
-                <Text variant="h5">El porcentaje de respuestas acertadas es {((score / 10) * 100).toFixed(2)}%</Text>
-                <Image style={{width: 250, height: 250}} source={getIcon(score)}></Image>
-                <Button title="Reiniciar" onPress={reset} trailing={props => <Ionicons name="ios-arrow-undo-circle-outline" size={24} color="black" {...props} />}/>
-            </Stack>
-        </>
+        <Stack style={{ margin: 56 }} fill center spacing={4}>
+            <Text variant="h5">Has conseguido {score} puntos</Text>
+            <Text variant="h5">El porcentaje de respuestas acertadas es {((score / 10) * 100).toFixed(2)}%</Text>
+            <Image style={{ width: 250, height: 250 }} source={getIcon(score)}></Image>
+            <Button title="Reiniciar" onPress={reset} trailing={props => <Ionicons name="ios-arrow-undo-circle-outline" size={24} color="black" {...props} />} />
+        </Stack>
     )
 }
 
