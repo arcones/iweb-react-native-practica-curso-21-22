@@ -58,15 +58,11 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     const getAttachmentURLIfPossible = () => {
-        // TODO reinstaurar todo esto
-        //return quizzes[currentQuiz].attachment ? quizzes[currentQuiz].attachment.url : jordi
-        return jordi
+        return quizzes[currentQuiz].attachment ? { uri: quizzes[currentQuiz].attachment.url } : jordi
     }
 
     const getAuthorPhotoIfPossible = () => {
-        // TODO reinstaurar todo esto
-        // return quizzes[currentQuiz].author && quizzes[currentQuiz].author.photo ? quizzes[currentQuiz].author.photo.url : mrx
-        return mrx
+        return quizzes[currentQuiz].author && quizzes[currentQuiz].author.photo ? { uri: quizzes[currentQuiz].author.photo.url } : mrx
     }
 
     const getAuthorNameIfPossible = () => {
