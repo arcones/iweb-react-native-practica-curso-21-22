@@ -1,7 +1,7 @@
-import Quiz from './components/Quiz';
+import Game from './components/Game';
 
 export default function App() {
   return (
-    <Quiz />
+    <Game />
   );
 }
