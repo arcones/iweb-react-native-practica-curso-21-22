@@ -9,11 +9,13 @@ const Quiz = ({ setScore, currentQuiz, setCurrentQuiz, setFinished }) => {
     const [answers, setAnswers] = useState({})
 
     useEffect(() => {
-        if (quizzes.length === 0) {
+        let mounted = true;
+        if (mounted && quizzes.length === 0) {
             fetch(URL)
                 .then(res => res.json())
                 .then(json => { setQuizzes(json) })
         }
+        return () => mounted = false;
     }, [quizzes]);
 
     return (

@@ -80,7 +80,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     const truncate = (question) => {
-        return question.substring(0, 150)
+        return question.substring(0, 100)
     }
 
     const fallbackAuthorPhoto = (e) => {
