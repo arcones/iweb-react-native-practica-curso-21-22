@@ -1,8 +1,6 @@
-import { useState } from "react";
 import Play from './Play';
 import NoQuizzes from './NoQuizzes';
-import { useEffect } from "react";
-
+import { useState, useEffect } from "react";
 
 const Quiz = ({ setScore, currentQuiz, setCurrentQuiz, setFinished }) => {
 
