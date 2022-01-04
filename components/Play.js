@@ -80,7 +80,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     const truncate = (question) => {
-        return question.substring(0, 100)
+        return question.substring(0, 75)
     }
 
     const fallbackAuthorPhoto = (e) => {
@@ -100,16 +100,26 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setTimeLeft((prevTimeLeft) => prevTimeLeft === 0 ? submit() : prevTimeLeft - 1);
-        }, 1000);
+        let mounted = true;
+        if (mounted) {
+            const interval = setInterval(() => {
+                setTimeLeft((prevTimeLeft) => prevTimeLeft === 0 ? submit() : prevTimeLeft - 1);
+            }, 1000);
+        }
         return () => {
             clearInterval(interval);
+            mounted = false
         };
     });
 
     useEffect(() => {
-        updateButtons()
+        let mounted = true;
+        if (mounted) {
+            updateButtons()
+        }
+        return () => {
+            mounted = false
+        };
     });
 
     const reboot = () => {
