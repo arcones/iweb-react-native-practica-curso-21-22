@@ -2,7 +2,6 @@ import { useState } from "react";
 import Play from './Play';
 import NoQuizzes from './NoQuizzes';
 import { useEffect } from "react";
-import { View } from 'react-native'
 
 
 const Game = ({ setScore, currentQuiz, setCurrentQuiz, setFinished }) => {
@@ -20,7 +19,7 @@ const Game = ({ setScore, currentQuiz, setCurrentQuiz, setFinished }) => {
     }, [quizzes]);
 
     return (
-        <View>
+        <>
             {quizzes.length > 0 && (
                 <Play
                     setScore={setScore}
@@ -36,7 +35,7 @@ const Game = ({ setScore, currentQuiz, setCurrentQuiz, setFinished }) => {
             {quizzes.length <= 0 && (
                 <NoQuizzes />
             )}
-        </View>
+        </>
     )
 }
 

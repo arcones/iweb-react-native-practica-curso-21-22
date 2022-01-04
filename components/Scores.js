@@ -1,5 +1,6 @@
-import { Text, View, TouchableHighlight, Image } from 'react-native';
-import { styles } from './styles';
+import { Text, Stack, Button } from "@react-native-material/core";
+import { Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import less_than_three from './img/less_than_three.png'
 import less_than_five from './img/less_than_five.png'
 import less_than_seven from './img/less_than_seven.png'
@@ -29,14 +30,14 @@ const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.headline}>Has conseguido {score} puntos</Text>
-            <Text style={styles.headline}>El porcentaje de respuestas acertadas es {((score / 10) * 100).toFixed(2)}%</Text>
-            <Image style={styles.image} source={getIcon(score)}></Image>
-            <TouchableHighlight style={styles.touchable} onPress={reset}>
-                <Text style={styles.touchableText}>Reiniciar</Text>
-            </TouchableHighlight>
-        </View>
+        <>
+            <Stack style={{ margin: 56 }} fill center spacing={4}>
+                <Text variant="h5">Has conseguido {score} puntos</Text>
+                <Text variant="h5">El porcentaje de respuestas acertadas es {((score / 10) * 100).toFixed(2)}%</Text>
+                <Image style={{width: 250, height: 250}} source={getIcon(score)}></Image>
+                <Button title="Reiniciar" onPress={reset} trailing={props => <Ionicons name="ios-arrow-undo-circle-outline" size={24} color="black" {...props} />}/>
+            </Stack>
+        </>
     )
 }
 

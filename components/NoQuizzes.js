@@ -1,13 +1,15 @@
 import travolta from './img/travolta.gif'
-import { View, Text, Image } from 'react-native'
-import { styles } from './styles';
+import { Text, Stack } from "@react-native-material/core";
+import { Image } from 'react-native';
 
 const NoQuizzes = () => {
     return (
-        <View style={styles.container}>
-                <Text style={styles.headline}>Upps... no hay preguntas disponibles</Text>
-                <Image source={travolta} alt="Travolta"/>
-        </View>
+        <>
+            <Stack style={{ margin: 56 }} fill center spacing={4}>
+                <Text variant="h5">Upps... no hay preguntas disponibles</Text>
+                <Image style={{ width: 250, height: 250 }} source={travolta} alt="Travolta" />
+            </Stack>
+        </>
     )
 }
 

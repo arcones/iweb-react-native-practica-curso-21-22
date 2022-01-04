@@ -1,7 +1,7 @@
 import Game from './Game';
 import Scores from './Scores';
 import { useState } from 'react';
-import { View } from 'react-native'
+import { Flex } from "@react-native-material/core";
 
 const Quiz = () => {
 
@@ -10,7 +10,7 @@ const Quiz = () => {
     const [finished, setFinished] = useState(false);
 
     return (
-        <View>
+        <Flex fill>
             {!finished && (
                 <Game
                     score={score}
@@ -29,7 +29,7 @@ const Quiz = () => {
                     setCurrentQuiz={setCurrentQuiz}
                 />
             )}
-        </View>
+        </Flex>
     )
 }
 
