@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import jordi from './img/jordi.jpeg'
 import mrx from './img/mrx.jpeg'
-import { TouchableHighlight, Text, View, Image, TextInput } from 'react-native';
-import { styles } from './styles';
+import { Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { Text, Stack, TextInput, HStack, Button } from "@react-native-material/core";
 
 const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes, answers, setAnswers }) => {
 
@@ -57,7 +58,9 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     const getAttachmentURLIfPossible = () => {
-        return quizzes[currentQuiz].attachment ? quizzes[currentQuiz].attachment.url : jordi
+        // TODO reinstaurar todo esto
+        //return quizzes[currentQuiz].attachment ? quizzes[currentQuiz].attachment.url : jordi
+        return jordi
     }
 
     const getAuthorPhotoIfPossible = () => {
@@ -77,7 +80,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     const truncate = (question) => {
-        return question.substring(0, 500)
+        return question.substring(0, 150)
     }
 
     const fallbackAuthorPhoto = (e) => {
@@ -124,24 +127,39 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
 
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.headline}>Trivial</Text>
-            <Text style={styles.headline}>Pregunta {currentQuiz + 1}</Text>
-            <Text style={styles.quizQuestion}>{truncate(quizzes[currentQuiz].question)}</Text>
-            <Image source={getAttachmentURLIfPossible()} onError={e => fallbackAttachmentPhoto(e)} alt='' />
-            <TextInput id="answer" value={inputs.get(currentQuiz)} onChange={e => onChangeDo(e)} onKeyPress={event => onEnterKey(event)} placeholder="Escriba su respuesta" />
-            <View  style={styles.container}>
-                <Text>Autor: {getAuthorNameIfPossible()}</Text>
-                <Image style={styles.tinyImage} source={mrx} onError={e => fallbackAuthorPhoto(e)} alt='' />
-                <Text>Tiempo restante para acabar el cuestionario: {timeLeft}</Text>
-            </View>
-            <View style={{flexDirection: 'row'}}>
-                <TouchableHighlight style={styles.quizActionTouchable} onPress={back} disabled={disabledBack}><Text style={styles.quizActionTouchableText}>Anterior</Text></TouchableHighlight>
-                <TouchableHighlight style={styles.quizActionTouchable} onClick={next} disabled={disabledNext}><Text style={styles.quizActionTouchableText}>Siguiente</Text></TouchableHighlight>
-            </View>
-            <TouchableHighlight style={styles.quizActionTouchable} onClick={submit}><Text style={styles.quizActionTouchableText}>Enviar</Text></TouchableHighlight>
-            <TouchableHighlight style={styles.quizActionTouchable} onClick={reboot}><Text style={styles.quizActionTouchableText}>Reiniciar</Text></TouchableHighlight>
-        </View>
+        <Stack spacing={2} style={{ marginTop: 50, margin: 26 }} fill>
+
+            <HStack style={{ justifyContent: 'center' }} spacing={6}>
+                <Text variant="h5">Pregunta {currentQuiz + 1}</Text>
+            </HStack>
+            <HStack style={{ justifyContent: 'center' }} spacing={6}>
+                <Text variant="subtitle1">{truncate(quizzes[currentQuiz].question)}</Text>
+            </HStack>
+
+            <HStack style={{ justifyContent: 'center' }} spacing={6}>
+                <Image style={{ width: 150, height: 150 }} source={getAttachmentURLIfPossible()} alt='' />
+            </HStack>
+
+            <TextInput label="Escriba su respuesta" value={inputs.get(currentQuiz)} onChange={e => onChangeDo(e)} onKeyPress={event => onEnterKey(event)} />
+
+            <HStack style={{ justifyContent: 'center' }} spacing={6}>
+                <Text variant="h5">Autor: {getAuthorNameIfPossible()}</Text>
+                <Image style={{ width: 25, height: 25 }} source={getAuthorPhotoIfPossible()} alt='' />
+            </HStack>
+
+            <HStack style={{ justifyContent: 'center' }} spacing={6}>
+                <Text variant="subtitle2">Tiempo restante para acabar el cuestionario: {timeLeft}</Text>
+            </HStack>
+
+            <HStack style={{ justifyContent: 'space-evenly' }} spacing={6}>
+                <Button title="Anterior" onPress={back} disabled={disabledBack} leading={props => <Ionicons name="arrow-back" {...props} />} />
+                <Button title="Siguiente" onPress={next} disabled={disabledNext} trailing={props => <Ionicons name="arrow-forward" {...props} />} />
+            </HStack>
+            <Stack spacing={2} fill >
+                <Button title="Enviar" onPress={submit} trailing={props => <Ionicons name="checkmark" {...props} />} />
+                <Button title="Reiniciar" onPress={reboot} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
+            </Stack>
+        </Stack>
     )
 }
 
