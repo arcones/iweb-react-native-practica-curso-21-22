@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "iweb_tictactoe_RN_2021",
-    "slug": "iweb_tictactoe_RN_2021",
+    "name": "my-native-games",
+    "slug": "my-native-games",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
