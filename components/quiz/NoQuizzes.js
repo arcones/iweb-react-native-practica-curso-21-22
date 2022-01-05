@@ -6,7 +6,7 @@ const NoQuizzes = () => {
 
         <>
             <Banner text="Intentando cargar más preguntas..." />
-            <PacmanIndicator color="#6200ee" size={160} />
+            <PacmanIndicator color="#009688" size={160} />
         </>
     )
 }
