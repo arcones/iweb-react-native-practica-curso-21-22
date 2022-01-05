@@ -17,14 +17,15 @@ export const styles = StyleSheet.create({
         width: 250,
         height: 250,
     },
+    mediumImage: {
+        width: 150,
+        height: 150,
+    },
     textInput: {
         backgroundColor: 'rgb(245, 245, 245)',
         borderRadius: 4,
         borderBottomWidth: 1,
         borderBottomColor: '#6200ee',
         padding: 10
-    },
-    vstackForImageBlurShadow: {
-        backgroundColor: '#ffffff'
     }
 })
