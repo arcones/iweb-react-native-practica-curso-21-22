@@ -40,8 +40,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         let scoreObtained = 0
 
         inputs.forEach((value, key) => {
-            console.log(quizzes[key])
-            if (value == quizzes[key].answer.toLowerCase()) {
+            if (value.toLowerCase() === quizzes[key].answer.toLowerCase()) {
                 scoreObtained++
             }
         });
