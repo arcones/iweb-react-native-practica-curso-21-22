@@ -1,6 +1,7 @@
 import Quiz from './Quiz';
 import Scores from './Scores';
-
+import { useState } from 'react'
+import { Flex, AppBar } from "@react-native-material/core";
 
 //TODO el switch aun no rula
 import es_flag from './img/spain.png'
@@ -19,11 +20,11 @@ const Game = () => {
         if (finished) {
             var finishedEmojis = Array("🍾", "🚧", "🏔️", "🌠", "🛣️", "🎉", "🧮", "🃏", "📣");
             var chosenEmoji = finishedEmojis[Math.floor(Math.random() * finishedEmojis.length)]
-            title = `Trivial - Resultados` + ` ${chosenEmoji}`
+            title = `Trivial - Resultados` + `  ${chosenEmoji}`
         } else {
             var finishedEmojis = Array("🎮", "🎳", "🎯", "🎲", "🧠", "🧵", "🎱", "🌂", "🦞", "💐", "🌈", "☃️", "🥘", "🍧", "🥨", "🥋", "⚽");
             var chosenEmoji = finishedEmojis[Math.floor(Math.random() * finishedEmojis.length)]
-            title = `Trivial - Pregunta ${currentQuiz + 1}` + ` ${chosenEmoji}`
+            title = `Trivial - Pregunta ${currentQuiz + 1}` + `  ${chosenEmoji}`
         }
         return title
     }
@@ -31,9 +32,9 @@ const Game = () => {
     return (
         <Flex fill>
             <AppBar color="#512DA8" tintColor="white" title={getAppBarTitle()}
-                // trailing={props =>
-                //     <SwitchWithIcons onValueChange={value => console.log(`Value has been updated to ${value}`)}/>
-                // }
+            // trailing={props =>
+            //     <SwitchWithIcons onValueChange={value => console.log(`Value has been updated to ${value}`)}/>
+            // }
             />
             {!finished && (
                 <Quiz

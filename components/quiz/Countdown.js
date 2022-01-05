@@ -7,7 +7,7 @@ const Countdown = ({submit}) => {
             <CountdownCircleTimer
                 size={100}
                 isPlaying={true}
-                duration={5}
+                duration={60}
                 colors={[
                     ['#6200ee', 0.4],
                     ['#FF4081', 0.4],
