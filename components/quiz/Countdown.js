@@ -9,9 +9,9 @@ const Countdown = ({submit}) => {
                 isPlaying={true}
                 duration={60}
                 colors={[
-                    ['#004777', 0.4],
-                    ['#F7B801', 0.4],
-                    ['#A30000', 0.2],
+                    ['#6200ee', 0.4],
+                    ['#FF4081', 0.4],
+                    ['#ffc107', 0.2],
                 ]}
                 onComplete={() => submit()}
             >
