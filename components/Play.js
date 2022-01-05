@@ -7,19 +7,11 @@ import { Text, Stack, HStack, Button, VStack } from "@react-native-material/core
 import { styles } from './css/QuizStyles'
 import Countdown from "./Countdown";
 
-const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes, answers, setAnswers }) => {
+const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes}) => {
 
     const [disabledNext, setDisabledNext] = useState(false);
     const [disabledBack, setDisabledBack] = useState(true);
     const [inputs, setInputs] = useState(new Map())
-
-    const answerSave = () => {
-        //TODO reinstaurar todo esto!!!
-        var answersCopy = answers
-        //answersCopy[quizzes[currentQuiz].id] = document.getElementById("answer").value.toLowerCase()
-        setAnswers(answersCopy)
-        //document.getElementById("answer").value = "";
-    }
 
     const updateButtons = () => {
         if (currentQuiz === (quizzes.length - 1)) {
@@ -35,34 +27,33 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     const next = () => {
-        answerSave()
         setCurrentQuiz(currentQuiz + 1)
     }
 
     const back = () => {
-        answerSave()
         setCurrentQuiz(currentQuiz - 1)
     }
 
     const submit = () => {
-        answerSave(currentQuiz)
         setFinished(true)
+        setCurrentQuiz(0)
         let scoreObtained = 0
-        Object.keys(answers).forEach((key) => {
-            let keyNumber = Number(key)
-            const filtered = quizzes.filter((quiz) => quiz.id === keyNumber)[0];
-            if (filtered.answer.toLowerCase() === answers[key].toLowerCase()) {
+
+        inputs.forEach((value, key) => {
+            console.log(quizzes[key])
+            if (value == quizzes[key].answer.toLowerCase()) {
                 scoreObtained++
             }
         });
+
         setScore(scoreObtained)
     }
 
     const getAttachmentURLIfPossible = () => {
-        return quizzes[currentQuiz].attachment ? { uri: quizzes[currentQuiz].attachment.url } : jordi
+        return quizzes[currentQuiz]?.attachment ? { uri: quizzes[currentQuiz].attachment.url } : jordi
     }
 
-    const getAuthorPhotoIfPossible = () => {
+    const getAuthorPhotoIfPossible = () => { //TODO esto no rula
         return quizzes[currentQuiz]?.author?.photo ?? mrx ?? { uri: quizzes[currentQuiz].author.photo.url }
     }
 
@@ -85,26 +76,16 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     });
 
     const reboot = () => {
+        setCurrentQuiz(0)
         setQuizzes([])
         setScore(0)
     }
 
     const storeResponse = (text) => {
-        console.log("EL TEXTO")
-        console.log(text)
-        console.log("---------------------")
-
-        console.log("EL CURRENT QUIZ")
-        console.log(currentQuiz)
-        console.log("---------------------")
-
         let newKey = new Map()
         newKey.set(currentQuiz, text)
         let merged = new Map([...inputs, ...newKey])
         setInputs(merged)
-        console.log("INPUTS")
-        console.log(inputs)
-        console.log("---------------------")
     }
 
     return (

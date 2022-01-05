@@ -1,11 +1,11 @@
 import { Text, Stack, Button } from "@react-native-material/core";
 import { Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import just_zero from './img/just_zero.png'
 import less_than_three from './img/less_than_three.png'
 import less_than_five from './img/less_than_five.png'
 import less_than_seven from './img/less_than_seven.png'
-import less_than_ten from './img/less_than_ten.png'
-import just_ten from './img/just_ten.png'
+import from_seven_to_ten from './img/from_seven_to_ten.png'
 import { styles } from './css/QuizStyles'
 
 const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
@@ -17,16 +17,16 @@ const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
     }
 
     const getIcon = (score) => {
-        if (score < 3) {
+        if (score === 0) {
+            return just_zero
+        } else if (score < 3) {
             return less_than_three
         } else if (score < 5) {
             return less_than_five
         } else if (score < 7) {
             return less_than_seven
-        } else if (score < 10) {
-            return less_than_ten
         } else {
-            return just_ten
+            return from_seven_to_ten
         }
     }
 
