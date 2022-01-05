@@ -14,3 +14,6 @@ web-build/
 # macOS
 .DS_Store
 components/mock-data.json
+
+00datos.txt
+*.zip
