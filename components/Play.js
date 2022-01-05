@@ -117,7 +117,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     return (
-        <Stack spacing={2} style={styles.topMargin} fill>
+        <Stack spacing={2} style={styles.margins} fill>
 
             <HStack style={styles.centered} spacing={6}>
                 <Text variant="h5">Pregunta {currentQuiz + 1} </Text>
@@ -138,7 +138,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
             </HStack>
 
             <HStack style={styles.centered} spacing={6}>
-                <Text variant="subtitle2">Tiempo restante para acabar el cuestionario: {timeLeft}</Text>
+                <Text variant="subtitle2">Tiempo restante {timeLeft} segundo(s)</Text>
             </HStack>
 
             <HStack style={styles.spaceEvenly} spacing={6}>

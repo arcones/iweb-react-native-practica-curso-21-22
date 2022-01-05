@@ -2,8 +2,9 @@ import { StyleSheet } from "react-native";
 import { Platform } from "react-native";
 
 export const styles = StyleSheet.create({
-    topMargin: {
-        margin: (Platform.OS === 'ios') ? 76 : 56
+    margins: {
+        marginTop: (Platform.OS === 'ios') ? 76 : 56,
+        marginHorizontal: 16
     },
     centered: {
         justifyContent: 'center'

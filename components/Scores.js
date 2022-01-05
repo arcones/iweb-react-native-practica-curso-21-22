@@ -31,7 +31,7 @@ const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
     }
 
     return (
-        <Stack style={styles.topMargin} fill center spacing={4}>
+        <Stack style={styles.margins} fill center spacing={4}>
             <Text variant="h5">Has conseguido {score} puntos</Text>
             <Text variant="h5">El porcentaje de respuestas acertadas es {((score / 10) * 100).toFixed(2)}%</Text>
             <Image style={styles.bigImage} source={getIcon(score)}></Image>
