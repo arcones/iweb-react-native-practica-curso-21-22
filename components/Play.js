@@ -3,11 +3,11 @@ import jordi from './img/jordi.jpeg'
 import mrx from './img/mrx.jpeg'
 import { Image, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Text, Stack, HStack, Button, VStack } from "@react-native-material/core";
+import { Text, Stack, HStack, Button, VStack, Avatar } from "@react-native-material/core";
 import { styles } from './css/QuizStyles'
 import Countdown from "./Countdown";
 
-const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes}) => {
+const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes }) => {
 
     const [disabledNext, setDisabledNext] = useState(false);
     const [disabledBack, setDisabledBack] = useState(true);
@@ -53,8 +53,8 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         return quizzes[currentQuiz]?.attachment ? { uri: quizzes[currentQuiz].attachment.url } : jordi
     }
 
-    const getAuthorPhotoIfPossible = () => { //TODO esto no rula
-        return quizzes[currentQuiz]?.author?.photo ?? mrx ?? { uri: quizzes[currentQuiz].author.photo.url }
+    const getAuthorPhotoIfPossible = () => {
+        return quizzes[currentQuiz] && quizzes[currentQuiz].author && quizzes[currentQuiz].author.photo ? { uri: quizzes[currentQuiz].author.photo.url } : mrx
     }
 
     const getAuthorNameIfPossible = () => {
@@ -108,8 +108,10 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
             <TextInput style={styles.textInput} value={inputs.get(currentQuiz)} onChangeText={(text) => storeResponse(text)} placeholder="Escriba su respuesta..." />
 
             <HStack style={styles.centered} spacing={6}>
-                <Text variant="h5">Autor: {getAuthorNameIfPossible()}</Text>
-                <Image style={styles.smallImage} source={getAuthorPhotoIfPossible()} alt='' />
+                <VStack style={styles.centered}>
+                    <Text variant="h5">Autor: {getAuthorNameIfPossible()}</Text>
+                </VStack>
+                <Avatar image={getAuthorPhotoIfPossible()} />
             </HStack>
 
             <HStack style={styles.spaceEvenly} spacing={6}>
