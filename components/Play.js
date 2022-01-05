@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import jordi from './img/jordi.jpeg'
 import mrx from './img/mrx.jpeg'
-import { Image, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Text, Stack, HStack, Button, VStack, Avatar } from "@react-native-material/core";
 import { styles } from './css/QuizStyles'
 import Countdown from "./Countdown";
+import ImageBlurShadow from 'react-native-image-blur-shadow';
 
 const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes }) => {
 
@@ -99,7 +100,9 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
             </HStack>
 
             <HStack style={styles.centered} spacing={6}>
-                <Image style={styles.mediumImage} source={getAttachmentURLIfPossible()} alt='' />
+                <VStack style={styles.vstackForImageBlurShadow}>
+                    <ImageBlurShadow source={getAttachmentURLIfPossible()} imageWidth={150} imageHeight={150} imageBorderRadius={12} shadowOffset={22} shadowBlurRadius={12} />
+                </VStack>
                 <VStack style={styles.centered}>
                     <Countdown submit={submit} />
                 </VStack>

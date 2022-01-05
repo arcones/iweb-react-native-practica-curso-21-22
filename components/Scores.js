@@ -1,5 +1,5 @@
-import { Text, Stack, Button } from "@react-native-material/core";
-import { Image } from 'react-native';
+import { Text, Stack, Button, VStack } from "@react-native-material/core";
+import ImageBlurShadow from 'react-native-image-blur-shadow';
 import { Ionicons } from '@expo/vector-icons';
 import just_zero from './img/just_zero.png'
 import less_than_three from './img/less_than_three.png'
@@ -34,7 +34,9 @@ const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
         <Stack style={styles.margins} fill center spacing={4}>
             <Text variant="h5">Has conseguido {score} puntos</Text>
             <Text variant="h5">El porcentaje de respuestas acertadas es {((score / 10) * 100).toFixed(2)}%</Text>
-            <Image style={styles.bigImage} source={getIcon(score)}></Image>
+            <VStack style={styles.vstackForImageBlurShadow}>
+                <ImageBlurShadow source={getIcon(score)} imageWidth={250} imageHeight={250} imageBorderRadius={12} shadowOffset={8} shadowBlurRadius={12} />
+            </VStack>
             <Button title="Reiniciar" onPress={reset} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
         </Stack>
     )
