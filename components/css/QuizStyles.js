@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 
 export const styles = StyleSheet.create({
     margins: {
-        marginTop: (Platform.OS === 'ios') ? 76 : 56,
+        marginTop: (Platform.OS === 'ios') ? 96 : 56,
         marginHorizontal: 16
     },
     centered: {
