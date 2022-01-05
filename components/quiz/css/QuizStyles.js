@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 
 export const styles = StyleSheet.create({
     margins: {
-        marginTop: (Platform.OS === 'ios') ? 96 : 56,
+        marginTop: (Platform.OS === 'ios') ? 16 : 6,
         marginHorizontal: 16
     },
     centered: {
@@ -18,8 +18,8 @@ export const styles = StyleSheet.create({
         height: 250,
     },
     mediumImage: {
-        width: 150,
-        height: 150,
+        width: 120,
+        height: 120,
     },
     textInput: {
         backgroundColor: 'rgb(245, 245, 245)',
