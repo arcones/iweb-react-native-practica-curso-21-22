@@ -3,14 +3,14 @@ import jordi from './img/jordi.jpeg'
 import mrx from './img/mrx.jpeg'
 import { Image, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Text, Stack, HStack, Button } from "@react-native-material/core";
+import { Text, Stack, HStack, Button, VStack } from "@react-native-material/core";
 import { styles } from './css/QuizStyles'
+import Countdown from "./Countdown";
 
 const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes, answers, setAnswers }) => {
 
     const [disabledNext, setDisabledNext] = useState(false);
     const [disabledBack, setDisabledBack] = useState(true);
-    const [timeLeft, setTimeLeft] = useState(60)
     const [inputs, setInputs] = useState(new Map())
 
     const answerSave = () => {
@@ -76,20 +76,6 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
 
     useEffect(() => {
         let mounted = true;
-        let interval;
-        if (mounted) {
-            interval = setInterval(() => {
-                setTimeLeft((prevTimeLeft) => prevTimeLeft === 0 ? submit() : prevTimeLeft - 1);
-            }, 1000);
-        }
-        return () => {
-            clearInterval(interval);
-            mounted = false
-        };
-    });
-
-    useEffect(() => {
-        let mounted = true;
         if (mounted) {
             updateButtons()
         }
@@ -103,17 +89,22 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         setScore(0)
     }
 
-    const storeResponse = (e) => {
-        console.log("EL EVENTO")
-        console.log(e)
+    const storeResponse = (text) => {
+        console.log("EL TEXTO")
+        console.log(text)
         console.log("---------------------")
+
+        console.log("EL CURRENT QUIZ")
+        console.log(currentQuiz)
+        console.log("---------------------")
+
         let newKey = new Map()
-        newKey.set(currentQuiz, e.target.value)
+        newKey.set(currentQuiz, text)
         let merged = new Map([...inputs, ...newKey])
         setInputs(merged)
-        console.log("ESTOS SON LOS INPUTS")
+        console.log("INPUTS")
         console.log(inputs)
-        console.log("-----------------------")
+        console.log("---------------------")
     }
 
     return (
@@ -128,17 +119,16 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
 
             <HStack style={styles.centered} spacing={6}>
                 <Image style={styles.mediumImage} source={getAttachmentURLIfPossible()} alt='' />
+                <VStack style={styles.centered}>
+                    <Countdown submit={submit} />
+                </VStack>
             </HStack>
 
-            <TextInput style={styles.textInput} value={inputs.get(currentQuiz)} onSubmitEditing={e => storeResponse(e)} placeholder="Escriba su respuesta..." />
+            <TextInput style={styles.textInput} value={inputs.get(currentQuiz)} onChangeText={(text) => storeResponse(text)} placeholder="Escriba su respuesta..." />
 
             <HStack style={styles.centered} spacing={6}>
                 <Text variant="h5">Autor: {getAuthorNameIfPossible()}</Text>
                 <Image style={styles.smallImage} source={getAuthorPhotoIfPossible()} alt='' />
-            </HStack>
-
-            <HStack style={styles.centered} spacing={6}>
-                <Text variant="subtitle2">Tiempo restante {timeLeft} segundo(s)</Text>
             </HStack>
 
             <HStack style={styles.spaceEvenly} spacing={6}>
