@@ -1,5 +1,5 @@
-import { Text, Stack, Button, VStack } from "@react-native-material/core";
-
+import { Text, Stack, Button } from "@react-native-material/core";
+import { Image } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import just_zero from './img/just_zero.png'
 import less_than_three from './img/less_than_three.png'
