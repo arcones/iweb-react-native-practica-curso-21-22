@@ -6,6 +6,7 @@ import less_than_five from './img/less_than_five.png'
 import less_than_seven from './img/less_than_seven.png'
 import less_than_ten from './img/less_than_ten.png'
 import just_ten from './img/just_ten.png'
+import { styles } from './css/QuizStyles'
 
 const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
 
@@ -30,10 +31,10 @@ const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
     }
 
     return (
-        <Stack style={{ margin: 56 }} fill center spacing={4}>
+        <Stack style={styles.topMargin} fill center spacing={4}>
             <Text variant="h5">Has conseguido {score} puntos</Text>
             <Text variant="h5">El porcentaje de respuestas acertadas es {((score / 10) * 100).toFixed(2)}%</Text>
-            <Image style={{ width: 250, height: 250 }} source={getIcon(score)}></Image>
+            <Image style={styles.bigImage} source={getIcon(score)}></Image>
             <Button title="Reiniciar" onPress={reset} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
         </Stack>
     )
