@@ -25,7 +25,7 @@ const Game = () => {
 
     return (
         <Flex fill>
-            <AppBar title={getAppBarTitle()} />
+            <AppBar color="#512DA8" tintColor="white" title={getAppBarTitle()} />
             {!finished && (
                 <Quiz
                     score={score}

@@ -1,21 +1,29 @@
 import Game from './components/quiz/Game';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Home from './components/home/Home';
 
-const Stack = createNativeStackNavigator();
+const Tab = createMaterialTopTabNavigator();
 
-function RenderGame() {
+function RenderQuiz() {
   return (
     <Game />
+  );
+}
+
+function RenderHome() {
+  return (
+    <Home />
   );
 }
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Native Games" component={RenderGame} />
-      </Stack.Navigator>
+      <Tab.Navigator style={{marginTop: 20}}>
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Quiz" component={RenderQuiz} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
