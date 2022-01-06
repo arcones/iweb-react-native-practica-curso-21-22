@@ -26,5 +26,11 @@ export const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#6200ee',
         padding: 10
+    },
+    emoji: {
+        fontSize: 30,
+        flex: 1, 
+        alignContent: 'center', 
+        justifyContent: 'center'
     }
 })

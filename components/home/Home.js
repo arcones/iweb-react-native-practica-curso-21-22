@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import LangContext from '../../App'
+// import LangContext from '../../App'
 import { Text } from "@react-native-material/core";
 
 const Home = () => {
 
-    const contextValue = useContext(LangContext);
+    //const contextValue = useContext(LangContext);
     
-    console.log(contextValue)
+    //console.log(contextValue)
 
     return (
         <Text variant="h5">ola k ase</Text>

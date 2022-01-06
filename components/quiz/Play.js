@@ -68,7 +68,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     const truncate = (question) => {
-        return question.substring(0, 75)
+        return question.substring(0, 86)
     }
 
     useEffect(() => {
