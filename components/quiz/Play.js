@@ -4,7 +4,7 @@ import mrx from './img/mrx.jpeg'
 import { TextInput, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Text, Stack, HStack, Button, VStack, Avatar, Chip } from "@react-native-material/core";
-import { styles } from '../css/Styles'
+import { SECONDARY_ORANGE, SECONDARY_PINK, styles } from '../css/Styles'
 import Countdown from "./Countdown";
 
 const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes }) => {
@@ -92,10 +92,10 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     return (
-        <Stack spacing={2} style={styles.quizMargins} fill>
+        <Stack spacing={2} style={styles.quizPadding} fill>
 
             <HStack style={styles.quizCentered} spacing={6}>
-                <Text variant="subtitle1" style={{alignContent: 'center'}}>{truncate(quizzes[currentQuiz].question)}</Text>
+                <Text variant="subtitle1" style={styles.quizCentered}>{truncate(quizzes[currentQuiz].question)}</Text>
             </HStack>
 
 
@@ -103,7 +103,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
 
                 <Image source={getAttachmentURLIfPossible()} style={styles.quizMediumImage} />
                 <VStack style={styles.quizCentered}>
-                    <Countdown submit={submit} />
+                    <Countdown submit={submit} timeLeft={60}/>
                 </VStack>
             </HStack>
 
@@ -111,7 +111,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
 
             <HStack style={styles.quizCentered} spacing={6}>
                 <VStack style={styles.quizCentered}>
-                    <Chip color="#FF4081" label={getAuthorChipLabel()} labelStyle={{fontWeight: 'bold'}} trailing={props =>
+                    <Chip color={SECONDARY_PINK} label={getAuthorChipLabel()} labelStyle={styles.quizAuthorText} trailing={props =>
                         <Avatar size={28} image={getAuthorPhotoIfPossible()} autoColor />} />
                 </VStack>
 
@@ -122,8 +122,8 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
                 <Button title="Siguiente" onPress={next} disabled={disabledNext} trailing={props => <Ionicons name="arrow-forward" {...props} />} />
             </HStack>
             <Stack spacing={2} fill >
-                <Button title="Enviar" color="#009688" tintColor="white" onPress={submit} trailing={props => <Ionicons name="checkmark" {...props} />} />
-                <Button title="Reiniciar" color="#FF4081" tintColor="white" onPress={reboot} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
+                <Button title="Enviar" color={SECONDARY_TEAL} tintColor="white" onPress={submit} trailing={props => <Ionicons name="checkmark" {...props} />} />
+                <Button title="Reiniciar" color={SECONDARY_PINK} tintColor="white" onPress={reboot} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
             </Stack>
 
         </Stack>

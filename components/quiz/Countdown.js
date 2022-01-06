@@ -1,17 +1,18 @@
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { Animated } from 'react-native';
+import { SECONDARY_PINK, SECONDARY_TEAL, SECONDARY_ORANGE } from '../css/Styles'
 
-const Countdown = ({submit}) => {
+const Countdown = ({submit, timeLeft}) => {
 
     return (
             <CountdownCircleTimer
                 size={100}
                 isPlaying={true}
-                duration={60}
+                duration={timeLeft}
                 colors={[
-                    ['#6200ee', 0.4],
-                    ['#FF4081', 0.4],
-                    ['#ffc107', 0.2],
+                    [SECONDARY_TEAL, 0.4],
+                    [SECONDARY_PINK, 0.4],
+                    [SECONDARY_ORANGE, 0.2],
                 ]}
                 onComplete={() => submit()}
             >

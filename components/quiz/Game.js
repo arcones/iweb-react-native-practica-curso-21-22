@@ -1,21 +1,15 @@
 import Quiz from './Quiz';
 import Scores from './Scores';
 import { useState, useEffect } from 'react'
-import { Flex, AppBar, HStack, Avatar, VStack } from "@react-native-material/core";
-
-//TODO el switch aun no rula
-import es_flag from './img/spain.png'
-import uk_flag from './img/united-kingdom.png'
-
+import { Flex, AppBar, Avatar, VStack } from "@react-native-material/core";
 import Emoji from 'react-native-emoji';
-import { styles } from '../css/Styles';
-import { getNextEmojiIfLastWasPresentOrFallback, UNFINISHED_EMOJIS, APPBAR_EMOJI_KEY_UNFINISHED, FINISHED_EMOJIS, APPBAR_EMOJI_KEY_FINISHED } from './util/EmojiManagement';
+import { SECONDARY_TEAL, styles } from '../css/Styles';
+import { getNextEmojiIfLastWasPresentOrFallback } from './util/EmojiManagement';
 
 const Game = () => {
 
     const [score, setScore] = useState(0);
     const [currentQuiz, setCurrentQuiz] = useState(0);
-    const [lastCurrentQuiz, setLastCurrentQuiz] = useState(-1);
     const [finished, setFinished] = useState(false);
     const [appBarEmoji, setAppBarEmoji] = useState("coffee");
 
@@ -24,30 +18,19 @@ const Game = () => {
     }
 
     useEffect(() => {
-        if (lastCurrentQuiz !== currentQuiz) {
-            if (finished) {
-                getNextEmojiIfLastWasPresentOrFallback(APPBAR_EMOJI_KEY_FINISHED, FINISHED_EMOJIS)
-                    .then(emojiFinished => setAppBarEmoji(emojiFinished))
+        getNextEmojiIfLastWasPresentOrFallback()
+            .then(emojiFinished => setAppBarEmoji(emojiFinished))
 
-            } else {
-                getNextEmojiIfLastWasPresentOrFallback(APPBAR_EMOJI_KEY_UNFINISHED, UNFINISHED_EMOJIS)
-                    .then(emojiUnfinished => setAppBarEmoji(emojiUnfinished))
-            }
-        }
-        return () => {
-            setLastCurrentQuiz(currentQuiz)
-        }
-    }, [finished, currentQuiz, lastCurrentQuiz]);
+    }, [currentQuiz, finished]);
 
     return (
         <Flex fill>
-            <AppBar color="#512DA8" tintColor="white"
+            <AppBar color={SECONDARY_TEAL} tintColor="white"
                 title={getAppBarTitle()}
-                trailing={props => 
-                <VStack style={{ flex: 1, alignContent: 'center', justifyContent: 'center', marginRight: 15 }}>
-                    <Avatar style={{paddingRight: 65}} size={48} icon={props => <Emoji name={appBarEmoji} style={styles.emoji} />} color="#F8BBD0"/>
-                
-                </VStack>}
+                trailing={props =>
+                    <VStack style={styles.quizAvatarContainer}>
+                        <Avatar style={styles.quizAvatar} size={35} icon={props => <Emoji name={appBarEmoji} style={styles.emoji} />} color="#F8BBD0" />
+                    </VStack>}
             />
             {!finished && (
                 <Quiz
