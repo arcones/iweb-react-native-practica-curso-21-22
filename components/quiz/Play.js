@@ -48,12 +48,6 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         setScore(scoreObtained)
     }
 
-    const randomEmojiPeople = () => {
-        var peopleEmojis = Array("🧝‍♀️", "🧙‍♂️", "🧛‍♀️", "🧟‍♂️", "🦸‍♀️", "🦹‍♀️", "🧞", "🧜‍♀️", "🧜‍♂️", "🧚", "🤶", "👨‍✈️", "👨‍🦰");
-        var chosenEmoji = peopleEmojis[Math.floor(Math.random() * peopleEmojis.length)]
-        return chosenEmoji
-    }
-
     const getAttachmentURLIfPossible = () => {
         return quizzes[currentQuiz]?.attachment ? { uri: quizzes[currentQuiz].attachment.url } : jordi
     }
@@ -63,8 +57,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     const getAuthorNameIfPossible = () => {
-        var authorName = quizzes[currentQuiz]?.author?.username ?? "Anónimo" ?? quizzes[currentQuiz].author.username
-        return authorName + ` ${randomEmojiPeople()}`
+        return quizzes[currentQuiz]?.author?.username ?? "Anónimo" ?? quizzes[currentQuiz].author.username
     }
 
     const truncate = (question) => {
@@ -94,8 +87,6 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         setInputs(merged)
     }
 
-
-
     const getAuthorChipLabel = () => {
         return `Autor: ${getAuthorNameIfPossible()}`
     }
@@ -104,7 +95,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         <Stack spacing={2} style={styles.quizMargins} fill>
 
             <HStack style={styles.quizCentered} spacing={6}>
-                <Text variant="subtitle1">{truncate(quizzes[currentQuiz].question)}</Text>
+                <Text variant="subtitle1" style={{alignContent: 'center'}}>{truncate(quizzes[currentQuiz].question)}</Text>
             </HStack>
 
 
@@ -120,9 +111,10 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
 
             <HStack style={styles.quizCentered} spacing={6}>
                 <VStack style={styles.quizCentered}>
-                    <Chip variant="outlined" label={getAuthorChipLabel()} />
+                    <Chip color="#FF4081" label={getAuthorChipLabel()} labelStyle={{fontWeight: 'bold'}} trailing={props =>
+                        <Avatar size={28} image={getAuthorPhotoIfPossible()} autoColor />} />
                 </VStack>
-                <Avatar image={getAuthorPhotoIfPossible()} autoColor />
+
             </HStack>
 
             <HStack style={styles.quizSpaceEvenly} spacing={6}>
@@ -131,9 +123,9 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
             </HStack>
             <Stack spacing={2} fill >
                 <Button title="Enviar" color="#009688" tintColor="white" onPress={submit} trailing={props => <Ionicons name="checkmark" {...props} />} />
-                <Button title="Reiniciar"  color="#FF4081" tintColor="white" onPress={reboot} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
+                <Button title="Reiniciar" color="#FF4081" tintColor="white" onPress={reboot} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
             </Stack>
-            
+
         </Stack>
     )
 }
