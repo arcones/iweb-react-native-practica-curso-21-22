@@ -49,12 +49,9 @@ export default function App() {
     ]);
   }
 
-  
-  let text = "Turn of " + turn;
-
   return (
     <View style={styles.tictactoeMargin}>
-      <Header text={text}/>
+      <Header text={turn}/>
       <Board values={values}  appClick={appClick}/>
       <Text style={styles.tictactoeText}>Number of moves: {moves}</Text>
       <Reset resetClick={resetClick}></Reset>

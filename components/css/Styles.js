@@ -1,15 +1,16 @@
 import { StyleSheet, Platform } from "react-native";
 
-export const PRIMARY_PURPLE = '#6200ee'
-export const SECONDARY_PINK = '#FF4081'
-export const SECONDARY_TEAL = "#009688"
-export const SECONDARY_ORANGE = "#FF5252"
-export const SECONDARY_BLUE = "#303F9F"
+export const PURPLE = '#6200ee'
+export const PINK = '#FF4081'
+export const TEAL = "#009688"
+export const ORANGE = "#FF5252"
+export const BLUE = "#303F9F"
+export const PALE_PINK = "#F8BBD0"
 
 export const styles = StyleSheet.create({
     AndroidSafeArea: {
         flex: 1,
-        backgroundColor: PRIMARY_PURPLE,
+        backgroundColor: PURPLE,
         paddingTop: Platform.OS === 'android' ? 25 : 0
     },
     quizPadding: {
@@ -51,11 +52,11 @@ export const styles = StyleSheet.create({
         backgroundColor: 'rgb(245, 245, 245)',
         borderRadius: 4,
         borderBottomWidth: 1,
-        borderBottomColor: PRIMARY_PURPLE,
+        borderBottomColor: PURPLE,
         padding: 10
     },
     quizCountdown: {
-        fontSize: 10, 
+        fontSize: 10,
         textAlign: 'center'
     },
     emoji: {
@@ -72,8 +73,8 @@ export const styles = StyleSheet.create({
         margin: 16
     },
     tictactoeText: {
-        fontSize: 25, 
-        padding: 30, 
+        fontSize: 25,
+        padding: 30,
         textAlign: 'center'
     },
     tictactoeMargin: {

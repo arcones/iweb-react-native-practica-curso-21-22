@@ -1,5 +1,7 @@
+import { Button } from '@react-native-material/core';
 import React from 'react';
-import {TouchableHighlight, Text, StyleSheet} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { PINK } from '../css/Styles';
 
 export default function Reset(props) {
   function click() {
@@ -7,21 +9,7 @@ export default function Reset(props) {
   }
 
   return(
-    <TouchableHighlight onPress={click}>
-      <Text style={styles.button}>Reset</Text>
-    </TouchableHighlight>
+    <Button title="Reset" color={PINK} tintColor="white" onPress={click} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
   );
     
 }
-
-const styles = StyleSheet.create({
-  button: {
-    borderWidth: 1,
-    borderColor: 'black',
-    backgroundColor: '#eee',
-    fontSize: 25,
-    textAlign: 'center',
-    padding: 10
-  }
-
-});

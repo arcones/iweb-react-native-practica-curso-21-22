@@ -3,7 +3,7 @@ import Scores from './Scores';
 import { useState, useEffect } from 'react'
 import { Flex, AppBar, Avatar, VStack } from "@react-native-material/core";
 import Emoji from 'react-native-emoji';
-import { SECONDARY_TEAL, styles } from '../css/Styles';
+import { TEAL, PALE_PINK, styles } from '../css/Styles';
 import { getNextEmojiIfLastWasPresentOrFallback } from './util/EmojiManagement';
 
 const Game = () => {
@@ -25,11 +25,11 @@ const Game = () => {
 
     return (
         <Flex fill>
-            <AppBar color={SECONDARY_TEAL} tintColor="white"
+            <AppBar color={TEAL} tintColor="white"
                 title={getAppBarTitle()}
                 trailing={props =>
                     <VStack style={styles.quizAvatarContainer}>
-                        <Avatar style={styles.quizAvatar} size={35} icon={props => <Emoji name={appBarEmoji} style={styles.emoji} />} color="#F8BBD0" />
+                        <Avatar style={styles.quizAvatar} size={35} icon={props => <Emoji name={appBarEmoji} style={styles.emoji} />} color={PALE_PINK} />
                     </VStack>}
             />
             {!finished && (

@@ -15,5 +15,6 @@ web-build/
 .DS_Store
 components/mock-data.json
 
+# IWEB
 00datos.txt
 *.zip
