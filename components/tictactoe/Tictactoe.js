@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header.jsx';
 import Board from './Board.jsx';
 import Reset from './Reset.jsx';
+import { styles } from '../css/Styles.js';
 
 const PLAYERX = "Player 1 - Xs";
 const PLAYER0 = "Player 2 - 0s";
@@ -52,10 +53,10 @@ export default function App() {
   let text = "Turn of " + turn;
 
   return (
-    <View style={{flex:1, margin: 30}}>
+    <View style={styles.tictactoeMargin}>
       <Header text={text}/>
       <Board values={values}  appClick={appClick}/>
-      <Text style={{fontSize: 25, padding: 30, textAlign:'center'}}>Number of moves: {moves}</Text>
+      <Text style={styles.tictactoeText}>Number of moves: {moves}</Text>
       <Reset resetClick={resetClick}></Reset>
     </View>
   );
