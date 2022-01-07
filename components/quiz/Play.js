@@ -4,8 +4,9 @@ import mrx from './img/mrx.jpeg'
 import { TextInput, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Text, Stack, HStack, Button, VStack, Avatar, Chip } from "@react-native-material/core";
-import { SECONDARY_ORANGE, SECONDARY_PINK, styles } from '../css/Styles'
+import { SECONDARY_TEAL, SECONDARY_PINK, styles } from '../css/Styles'
 import Countdown from "./Countdown";
+import ResizableText from "./util/ResizableText";
 
 const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes }) => {
 
@@ -60,8 +61,9 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         return quizzes[currentQuiz]?.author?.username ?? "Anónimo" ?? quizzes[currentQuiz].author.username
     }
 
-    const truncate = (question) => {
-        return question.substring(0, 86)
+    const safeQuizQuestion = () => {
+        let safeQuizQuestion = quizzes[currentQuiz]?.question ? quizzes[currentQuiz].question : "Cargando pregunta..."
+        return safeQuizQuestion.substring(0, 250)
     }
 
     useEffect(() => {
@@ -95,7 +97,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         <Stack spacing={2} style={styles.quizPadding} fill>
 
             <HStack style={styles.quizCentered} spacing={6}>
-                <Text variant="subtitle1" style={styles.quizCentered}>{truncate(quizzes[currentQuiz].question)}</Text>
+                <ResizableText style={styles.quizCentered} numberOfLines={3} text={safeQuizQuestion()} />
             </HStack>
 
 
@@ -103,7 +105,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
 
                 <Image source={getAttachmentURLIfPossible()} style={styles.quizMediumImage} />
                 <VStack style={styles.quizCentered}>
-                    <Countdown submit={submit} timeLeft={60}/>
+                    <Countdown submit={submit} timeLeft={60} />
                 </VStack>
             </HStack>
 
