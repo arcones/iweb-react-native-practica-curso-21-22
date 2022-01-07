@@ -153,7 +153,6 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
                 <Button title="Enviar" color={TEAL} tintColor="white" onPress={submit} trailing={props => <Ionicons name="checkmark" {...props} />} />
                 <Button title="Reiniciar" color={PINK} tintColor="white" onPress={reboot} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
             </Stack>
-
         </Stack>
     )
 }

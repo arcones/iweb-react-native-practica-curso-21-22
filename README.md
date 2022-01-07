@@ -12,6 +12,14 @@ Use expo to run it:
 
 Then follow instructions on the console to run it either on physicall or emulated device.
 
+## Some screenshots
+
+### iPhone
+TODO
+
+### Android
+TODO
+
 ## Component diagram
 
 ![component diagram](componentDiagram.png "Component Diagram")
