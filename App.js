@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Home from './components/home/Home';
 import Tictactoe from './components/tictactoe/Tictactoe';
-import { styles } from './components/css/Styles';
+import { styles } from './components/Styles';
 import { SafeAreaView } from 'react-native';
 import { useState, createContext } from 'react';
 import es from './lang/es.json';

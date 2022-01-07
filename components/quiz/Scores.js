@@ -6,7 +6,7 @@ import less_than_three from './img/less_than_three.png'
 import less_than_five from './img/less_than_five.png'
 import less_than_seven from './img/less_than_seven.png'
 import from_seven_to_ten from './img/from_seven_to_ten.png'
-import { styles, PINK } from '../css/Styles'
+import { styles, PINK } from '../Styles'
 
 const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
 

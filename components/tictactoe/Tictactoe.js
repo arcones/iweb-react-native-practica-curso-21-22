@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header.jsx';
 import Board from './Board.jsx';
 import Reset from './Reset.jsx';
-import { styles } from '../css/Styles.js';
+import { styles } from '../Styles.js';
 
 const PLAYERX = "Player 1 - Xs";
 const PLAYER0 = "Player 2 - 0s";

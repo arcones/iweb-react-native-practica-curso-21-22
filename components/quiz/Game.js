@@ -3,7 +3,7 @@ import Scores from './Scores';
 import { useState, useEffect } from 'react'
 import { Flex, AppBar, Avatar, VStack } from "@react-native-material/core";
 import Emoji from 'react-native-emoji';
-import { PURPLE, PALE_PINK, styles } from '../css/Styles';
+import { PURPLE, PALE_PINK, styles } from '../Styles';
 import { getNextEmojiIfLastWasPresentOrFallback } from './util/EmojiManagement';
 
 const Game = () => {

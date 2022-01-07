@@ -4,7 +4,7 @@ import mrx from './img/mrx.jpeg'
 import { TextInput, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Stack, HStack, Button, VStack, Avatar, Chip } from "@react-native-material/core";
-import { TEAL, PINK, styles } from '../css/Styles'
+import { TEAL, PINK, styles } from '../Styles'
 import Countdown from "./Countdown";
 import ResizableText from "./util/ResizableText";
 import { saveQuestionnaire, getSavedQuestionnaireOrAlert, removeQuestionnaire, checkIfSavedQuestionnaire } from "./util/QuestionLocalStorage";

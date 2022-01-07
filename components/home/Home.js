@@ -3,7 +3,7 @@ import { Text, Banner, HStack, Button, Avatar, Divider, VStack } from "@react-na
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'react-native';
 import { PacmanIndicator } from 'react-native-indicators'
-import { ORANGE, styles } from '../css/Styles';
+import { ORANGE, styles } from '../Styles';
 import { useContext } from 'react';
 import { LangContext } from '../../App'
 

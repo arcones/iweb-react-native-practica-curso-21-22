@@ -1,6 +1,6 @@
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { Animated } from 'react-native';
-import { PINK, TEAL, ORANGE, styles } from '../css/Styles'
+import { PINK, TEAL, ORANGE, styles } from '../Styles'
 
 const Countdown = ({ submit, timeLeft }) => {
 

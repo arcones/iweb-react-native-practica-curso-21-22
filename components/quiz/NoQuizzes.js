@@ -1,6 +1,6 @@
 import {  Banner } from "@react-native-material/core";
 import {PacmanIndicator } from 'react-native-indicators'
-import { TEAL } from "../css/Styles";
+import { TEAL } from "../Styles";
 
 const NoQuizzes = () => {
     return (

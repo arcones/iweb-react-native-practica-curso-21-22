@@ -1,7 +1,7 @@
 import { Button } from '@react-native-material/core';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { PINK } from '../css/Styles';
+import { PINK } from '../Styles';
 
 export default function Reset(props) {
   function click() {
