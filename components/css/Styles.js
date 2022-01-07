@@ -79,7 +79,9 @@ export const styles = StyleSheet.create({
     },
     tictactoeMargin: {
         flex: 1,
-        margin: 25
+        marginHorizontal: 25,
+        marginBottom: 25,
+        marginTop: 10
     }
 })
 

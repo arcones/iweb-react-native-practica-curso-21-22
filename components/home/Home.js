@@ -3,7 +3,7 @@ import { Text, Banner, HStack, Button, Avatar, Divider, VStack } from "@react-na
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'react-native';
 import { PacmanIndicator } from 'react-native-indicators'
-import { SECONDARY_ORANGE, styles } from '../css/Styles';
+import { ORANGE, styles } from '../css/Styles';
 
 const Home = () => {
 
@@ -12,7 +12,7 @@ const Home = () => {
         'In Pokemon Red & Blue, the three renowned legendary Pokemon, Arcticuno, Zapdos and Moltres actually comes from “One Two Three” in Spanish. Artic-UNO, Zap-DOS, Mol-TRES',
         'Studies indicate that surgeons who regularly play video games make 37% fewer mistakes and operate 27% faster than their peers',
         'If you ever pitied Rockstar’s GTA for getting all the negative reviews, you can save your pity. Because Rockstar games paid to get negative press for its GTA series',
-        'The highly successful FPS GoldenEye 007 was developed by a team who had never previously worked for any video games. 8 of 10 of its developers were totally inexperienced in the art of making video games',
+        'Only 8 out of 10 of the developers of the highly successful FPS GoldenEye 007 worked previously in video games',
         'Robin Willams was so big fan of video games that he named his kids after the main characters of popular video games "The legend of Zelda" and "Final Fight"',
         'South Korea has a rule called ‘Cinderella law’ which disallows under-16 gamers to play online video games after midnight',
         'Players of online video game Foldit decoded the crystal structure of an AIDS using a puzzle that had remain unsolved for over 15 years',
@@ -67,7 +67,7 @@ const Home = () => {
                     }
                 />
                 <HStack fill center>
-                    <PacmanIndicator color={SECONDARY_ORANGE} size={150} />
+                    <PacmanIndicator color={ORANGE} size={120} />
                 </HStack>
             </VStack>
         </>

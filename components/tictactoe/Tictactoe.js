@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 
 import React, { useState, useEffect } from 'react';
 import Header from './Header.jsx';
@@ -16,7 +16,7 @@ export default function App() {
     ['-', '-', '-'],
     ['-', '-', '-'],
     ['-', '-', '-']
-    ]);
+  ]);
 
   useEffect(() => {
     async function fetchData() {
@@ -31,15 +31,15 @@ export default function App() {
   }, []);
 
   function appClick(rowNumber, columnNumber) {
-      let valuesCopy = JSON.parse(JSON.stringify(values));
-      let newMovement = turn === PLAYERX ? 'X' : '0';
-      valuesCopy[rowNumber][columnNumber] = newMovement;
-      setTurn(turn === PLAYERX ? PLAYER0 : PLAYERX);
-      setValues(valuesCopy);
-      setMoves(moves + 1); 
+    let valuesCopy = JSON.parse(JSON.stringify(values));
+    let newMovement = turn === PLAYERX ? 'X' : '0';
+    valuesCopy[rowNumber][columnNumber] = newMovement;
+    setTurn(turn === PLAYERX ? PLAYER0 : PLAYERX);
+    setValues(valuesCopy);
+    setMoves(moves + 1);
   }
 
-  function resetClick(){
+  function resetClick() {
     setTurn(PLAYERX);
     setMoves(0);
     setValues([
@@ -50,9 +50,10 @@ export default function App() {
   }
 
   return (
+
     <View style={styles.tictactoeMargin}>
-      <Header text={turn}/>
-      <Board values={values}  appClick={appClick}/>
+      <Header text={turn} />
+      <Board values={values} appClick={appClick} />
       <Text style={styles.tictactoeText}>Number of moves: {moves}</Text>
       <Reset resetClick={resetClick}></Reset>
     </View>
