@@ -7,12 +7,14 @@ import { Stack, HStack, Button, VStack, Avatar, Chip } from "@react-native-mater
 import { TEAL, PINK, styles } from '../css/Styles'
 import Countdown from "./Countdown";
 import ResizableText from "./util/ResizableText";
-import { saveQuestionnaire, getSavedQuestionnaireOrAlert, removeQuestionnaire } from "./util/QuestionLocalStorage";
+import { saveQuestionnaire, getSavedQuestionnaireOrAlert, removeQuestionnaire, checkIfSavedQuestionnaire } from "./util/QuestionLocalStorage";
+import { noRestoreAtTheEnd, noSavedQuestionnaireAlert, reconfirmRestore } from './util/Alerts'
 
 const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes }) => {
 
     const [disabledNext, setDisabledNext] = useState(false);
     const [disabledBack, setDisabledBack] = useState(true);
+    const [timeLeft, setTimeLeft] = useState(60);
     const [inputs, setInputs] = useState(new Map())
 
     const updateButtons = () => {
@@ -42,7 +44,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         let scoreObtained = 0
 
         inputs.forEach((value, key) => {
-            if (value.toLowerCase() === quizzes[key].answer.toLowerCase()) {
+            if (value.toLowerCase().trim() === quizzes[key].answer.toLowerCase().trim()) {
                 scoreObtained++
             }
         });
@@ -81,6 +83,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         setCurrentQuiz(0)
         setQuizzes([])
         setScore(0)
+        setInputs(new Map())
     }
 
     const storeResponse = (text) => {
@@ -98,6 +101,19 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
         saveQuestionnaire(quizzes)
     }
 
+    const restoreQuizzes = async () => {
+        let savedQuestionnaire = await checkIfSavedQuestionnaire()
+        if (savedQuestionnaire) {
+            if (inputs.size === 0) {
+                getSavedQuestionnaireOrAlert(setQuizzes, setTimeLeft, setInputs)
+            } else {
+                await reconfirmRestore() ? getSavedQuestionnaireOrAlert(setQuizzes, setTimeLeft, setInputs) : noRestoreAtTheEnd()
+            }
+        } else {
+            noSavedQuestionnaireAlert()
+        }
+    }
+
     return (
         <Stack spacing={2} style={styles.quizPadding} fill>
 
@@ -109,7 +125,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
             <HStack style={styles.quizCentered} spacing={6}>
                 <Image source={getAttachmentURLIfPossible()} style={styles.quizMediumImage} />
                 <VStack style={styles.quizCentered}>
-                    <Countdown submit={submit} timeLeft={60} />
+                    <Countdown submit={submit} timeLeft={timeLeft} />
                 </VStack>
             </HStack>
 
@@ -117,7 +133,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
 
             <HStack style={styles.quizCentered} spacing={1}>
                 <Button title="Guardar" onPress={saveQuizzes} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="save" {...props} />} />
-                <Button title="Restaurar" onPress={getSavedQuestionnaireOrAlert} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="folder-open" {...props} />} />
+                <Button title="Restaurar" onPress={restoreQuizzes} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="folder-open" {...props} />} />
                 <Button title="Eliminar" onPress={removeQuestionnaire} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="trash" {...props} />} />
             </HStack>
 

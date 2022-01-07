@@ -1,60 +1,28 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Alert } from "react-native";
-
 const _KEY = '@P5_2021_IWEB:quiz'
+import { noSavedQuestionnaireAlert, restoredQuestionnaireAlert, savedQuestionnaireAlert, removedQuestionnaireAlert } from './Alerts';
 
-const _noSavedQuestionnaireAlert = () =>
-    Alert.alert(
-        "No hay questionarios guardados",
-        "Pulse en el botón de guardar cuando le guste un conjunto de preguntas para guardarlo",
-        [
-            { text: "OK", onPress: () => console.log("_noSavedQuestionnaireAlert OK Pressed") }
-        ]
-    );
+export const checkIfSavedQuestionnaire = async () => {
+    return await _getSavedQuestionnaire(_KEY) ? _getSavedQuestionnaire(_KEY) : false
+}
 
-const _restoredQuestionnaireAlert = () =>
-    Alert.alert(
-        "Éxito",
-        "Se ha restaurado el cuestionario guardado",
-        [
-            { text: "OK", onPress: () => console.log("_restoredQuestionnaireAlert OK Pressed") }
-        ]
-    );
-
-const _savedQuestionnaireAlert = () =>
-    Alert.alert(
-        "Éxito",
-        "Se ha guardado el cuestionario actual",
-        [
-            { text: "OK", onPress: () => console.log("_savedQuestionnaireAlert OK Pressed") }
-        ]
-    );
-
-const _removedQuestionnaireAlert = () =>
-    Alert.alert(
-        "Éxito",
-        "Se ha eliminado el cuestionario guardado",
-        [
-            { text: "OK", onPress: () => console.log("_removedQuestionnaireAlert OK Pressed") }
-        ]
-    );
-
-export const getSavedQuestionnaireOrAlert = async () => {
-    let savedQuestionnaire = await _getSavedQuestionnaire(_KEY)
+export const getSavedQuestionnaireOrAlert = async (setQuizzes, setTimeLeft, setInputs) => {
+    let savedQuestionnaire = await checkIfSavedQuestionnaire()
     if (savedQuestionnaire) {
-        _restoredQuestionnaireAlert()
-        console.log("Aqui he de implementar la restauración del questionario") //TODO restarurar los quizzes, el countDown, los puntos
+        restoredQuestionnaireAlert()
+        setQuizzes(savedQuestionnaire)
+        setTimeLeft(60)
+        setInputs(new Map())
     } else {
-        _noSavedQuestionnaireAlert()
+        noSavedQuestionnaireAlert()
     }
 }
 
 export const saveQuestionnaire = async (quizzes) => {
     try {
-        console.log(quizzes)
         const quizzesJson = JSON.stringify(quizzes)
         await AsyncStorage.setItem(_KEY, quizzesJson);
-        _savedQuestionnaireAlert()
+        savedQuestionnaireAlert()
     } catch (error) {
         console.log(`There was a problem saving current questionnaire:\n ${error}`)
     }
@@ -62,9 +30,14 @@ export const saveQuestionnaire = async (quizzes) => {
 
 export const removeQuestionnaire = async () => {
     try {
-        await AsyncStorage.removeItem(_KEY)
-        _removedQuestionnaireAlert()
-    } catch (e) {
+        let savedQuestionnaire = await checkIfSavedQuestionnaire()
+        if (savedQuestionnaire) {
+            await AsyncStorage.removeItem(_KEY)
+            removedQuestionnaireAlert()
+        } else {
+            noSavedQuestionnaireAlert()
+        }
+    } catch (error) {
         console.log(`There was a problem removing saved questionnaire:\n ${error}`)
     }
 }
