@@ -1,18 +1,15 @@
 import { View, Text } from 'react-native';
 
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header.jsx';
 import Board from './Board.jsx';
 import Reset from './Reset.jsx';
 import { styles } from '../Styles.jsx';
-import { LangContext } from '../../App.jsx';
 
 export default function App() {
 
-  const contextValue = useContext(LangContext);
-
-  const PLAYERX = `${contextValue.dictionary.tictactoe_player} 1 - Xs`;
-  const PLAYER0 = `${contextValue.dictionary.tictactoe_player} 2 - Os`;
+  const PLAYERX = "Jugador/a 1 - Xs";
+  const PLAYER0 = "Jugador/a 2 - Os";
 
   const [turn, setTurn] = useState(PLAYERX);
   const [moves, setMoves] = useState(0);
@@ -53,13 +50,13 @@ export default function App() {
     ]);
   }
 
-  let text = `${contextValue.dictionary.tictactoe_turn}: ${turn}` ;
+  let text = `Turno: ${turn}` ;
 
   return (
     <View style={styles.tictactoeMargin}>
       <Header text={text} />
       <Board values={values} appClick={appClick} />
-      <Text style={styles.tictactoeText}>{contextValue.dictionary.tictactoe_moves}{moves}</Text>
+      <Text style={styles.tictactoeText}>Número de movimientos: {moves}</Text>
       <Reset resetClick={resetClick}></Reset>
     </View>
   );

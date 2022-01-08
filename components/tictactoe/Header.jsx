@@ -10,7 +10,7 @@ export default function Header(props) {
 const styles = StyleSheet.create({
   header: { 
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 20,
     padding: 30
   }
 });

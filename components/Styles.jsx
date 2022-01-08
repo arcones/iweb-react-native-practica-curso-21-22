@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
         margin: 16
     },
     tictactoeText: {
-        fontSize: 25,
+        fontSize: 20,
         padding: 30,
         textAlign: 'center'
     },
