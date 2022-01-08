@@ -38,7 +38,7 @@ export const removedQuestionnaireAlert = () =>
 
 
 export const reconfirmRestore = async () => {
-    console.log("estoy en reconfirm restore")
+
     const AsyncAlert = async () => new Promise((resolve) => {
         Alert.alert(
             "¿Seguro?",

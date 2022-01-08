@@ -21,7 +21,7 @@ const _saveLastEmoji = async (KEY, lastEmoji) => {
     try {
         await AsyncStorage.setItem(KEY, lastEmoji);
     } catch (error) {
-        console.log(`There was a problem saving last emoji:\n ${error}`)
+        console.err(`There was a problem saving last emoji:\n ${error}`)
     }
 }
 
@@ -30,6 +30,6 @@ const _getLastEmoji = async (KEY) => {
         let lastEmoji = await AsyncStorage.getItem(KEY)
         return lastEmoji
     } catch (error) {
-        console.log(`There was a problem retrieving last emoji, falling back to first of list:\n ${error}`)
+        console.err(`There was a problem retrieving last emoji, falling back to first of list:\n ${error}`)
     }
 }

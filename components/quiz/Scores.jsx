@@ -7,6 +7,7 @@ import less_than_five from './img/less_than_five.png'
 import less_than_seven from './img/less_than_seven.png'
 import from_seven_to_ten from './img/from_seven_to_ten.png'
 import { styles, PINK } from '../Styles'
+import QuizAppBar from "./QuizAppBar";
 
 const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
 
@@ -31,12 +32,15 @@ const Scores = ({ score, setFinished, setScore, setCurrentQuiz }) => {
     }
 
     return (
-        <Stack style={styles.quizPadding} fill center spacing={4}>
-            <Text variant="h5">Has conseguido {score} puntos</Text>
-            <Text variant="h5">El porcentaje de respuestas acertadas es {((score / 10) * 100).toFixed(2)}%</Text>
-            <Image style={styles.quizBigImage} source={getIcon(score)} />
-            <Button title="Reiniciar" color={PINK} tintColor="white" onPress={reset} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
-        </Stack>
+        <>
+            <QuizAppBar barTitle="Trivial - Resultados"/>
+            <Stack style={styles.quizPadding} fill center spacing={4}>
+                <Text variant="h5">Has conseguido {score} puntos</Text>
+                <Text variant="h5">El porcentaje de respuestas acertadas es {((score / 10) * 100).toFixed(2)}%</Text>
+                <Image style={styles.quizBigImage} source={getIcon(score)} />
+                <Button title="Reiniciar" color={PINK} tintColor="white" onPress={reset} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
+            </Stack>
+        </>
     )
 }
 

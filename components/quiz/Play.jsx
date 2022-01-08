@@ -9,6 +9,7 @@ import Countdown from "./Countdown";
 import ResizableText from "./util/ResizableText";
 import { saveQuestionnaire, getSavedQuestionnaireOrAlert, removeQuestionnaire, checkIfSavedQuestionnaire } from "./util/QuestionLocalStorage";
 import { noRestoreAtTheEnd, noSavedQuestionnaireAlert, reconfirmRestore } from './util/Alerts'
+import QuizAppBar from "./QuizAppBar";
 
 const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, setQuizzes }) => {
 
@@ -115,45 +116,47 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     return (
-        <Stack spacing={2} style={styles.quizPadding} fill>
+        <>
+            <QuizAppBar barTitle={`Trivial - Pregunta ${currentQuiz + 1}`} onWhat={currentQuiz} />
+            <Stack spacing={2} style={styles.quizPadding} fill>
+                <HStack style={styles.quizCentered} spacing={6}>
+                    <ResizableText style={styles.quizCentered} numberOfLines={2} text={safeQuizQuestion()} />
+                </HStack>
 
-            <HStack style={styles.quizCentered} spacing={6}>
-                <ResizableText style={styles.quizCentered} numberOfLines={2} text={safeQuizQuestion()} />
-            </HStack>
 
+                <HStack style={styles.quizCentered} spacing={6}>
+                    <Image source={getAttachmentURLIfPossible()} style={styles.quizMediumImage} />
+                    <VStack style={styles.quizCentered}>
+                        <Countdown submit={submit} timeLeft={timeLeft} />
+                    </VStack>
+                </HStack>
 
-            <HStack style={styles.quizCentered} spacing={6}>
-                <Image source={getAttachmentURLIfPossible()} style={styles.quizMediumImage} />
-                <VStack style={styles.quizCentered}>
-                    <Countdown submit={submit} timeLeft={timeLeft} />
-                </VStack>
-            </HStack>
+                <TextInput style={styles.quizTextInput} value={inputs.get(currentQuiz)} onChangeText={(text) => storeResponse(text)} placeholder="Escriba su respuesta..." />
 
-            <TextInput style={styles.quizTextInput} value={inputs.get(currentQuiz)} onChangeText={(text) => storeResponse(text)} placeholder="Escriba su respuesta..." />
+                <HStack style={styles.quizCentered} spacing={1}>
+                    <Button title="Guardar" onPress={saveQuizzes} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="save" {...props} />} />
+                    <Button title="Restaurar" onPress={restoreQuizzes} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="folder-open" {...props} />} />
+                    <Button title="Eliminar" onPress={removeQuestionnaire} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="trash" {...props} />} />
+                </HStack>
 
-            <HStack style={styles.quizCentered} spacing={1}>
-                <Button title="Guardar" onPress={saveQuizzes} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="save" {...props} />} />
-                <Button title="Restaurar" onPress={restoreQuizzes} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="folder-open" {...props} />} />
-                <Button title="Eliminar" onPress={removeQuestionnaire} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="trash" {...props} />} />
-            </HStack>
+                <HStack style={styles.quizCentered} spacing={6}>
+                    <VStack style={styles.quizCentered}>
+                        <Chip color={PINK} label={getAuthorChipLabel()} labelStyle={styles.quizAuthorText} trailing={props =>
+                            <Avatar size={28} image={getAuthorPhotoIfPossible()} autoColor />} />
+                    </VStack>
 
-            <HStack style={styles.quizCentered} spacing={6}>
-                <VStack style={styles.quizCentered}>
-                    <Chip color={PINK} label={getAuthorChipLabel()} labelStyle={styles.quizAuthorText} trailing={props =>
-                        <Avatar size={28} image={getAuthorPhotoIfPossible()} autoColor />} />
-                </VStack>
+                </HStack>
 
-            </HStack>
-
-            <HStack style={styles.quizSpaceEvenly} spacing={6}>
-                <Button title="Anterior" onPress={back} disabled={disabledBack} leading={props => <Ionicons name="arrow-back" {...props} />} />
-                <Button title="Siguiente" onPress={next} disabled={disabledNext} trailing={props => <Ionicons name="arrow-forward" {...props} />} />
-            </HStack>
-            <Stack spacing={2} fill >
-                <Button title="Enviar" color={TEAL} tintColor="white" onPress={submit} trailing={props => <Ionicons name="checkmark" {...props} />} />
-                <Button title="Reiniciar" color={PINK} tintColor="white" onPress={reboot} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
+                <HStack style={styles.quizSpaceEvenly} spacing={6}>
+                    <Button title="Anterior" onPress={back} disabled={disabledBack} leading={props => <Ionicons name="arrow-back" {...props} />} />
+                    <Button title="Siguiente" onPress={next} disabled={disabledNext} trailing={props => <Ionicons name="arrow-forward" {...props} />} />
+                </HStack>
+                <Stack spacing={2} fill >
+                    <Button title="Enviar" color={TEAL} tintColor="white" onPress={submit} trailing={props => <Ionicons name="checkmark" {...props} />} />
+                    <Button title="Reiniciar" color={PINK} tintColor="white" onPress={reboot} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
+                </Stack>
             </Stack>
-        </Stack>
+        </>
     )
 }
 

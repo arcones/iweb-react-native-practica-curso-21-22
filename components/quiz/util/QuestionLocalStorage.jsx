@@ -24,7 +24,7 @@ export const saveQuestionnaire = async (quizzes) => {
         await AsyncStorage.setItem(_KEY, quizzesJson);
         savedQuestionnaireAlert()
     } catch (error) {
-        console.log(`There was a problem saving current questionnaire:\n ${error}`)
+        console.err(`There was a problem saving current questionnaire:\n ${error}`)
     }
 }
 
@@ -38,7 +38,7 @@ export const removeQuestionnaire = async () => {
             noSavedQuestionnaireAlert()
         }
     } catch (error) {
-        console.log(`There was a problem removing saved questionnaire:\n ${error}`)
+        console.err(`There was a problem removing saved questionnaire:\n ${error}`)
     }
 }
 
@@ -47,6 +47,6 @@ const _getSavedQuestionnaire = async () => {
         const quizzesJson = await AsyncStorage.getItem(_KEY)
         return quizzesJson != null ? JSON.parse(quizzesJson) : null;
     } catch (error) {
-        console.log(`There was a problem retrieving saved questionnaire:\n ${error}`)
+        console.err(`There was a problem retrieving saved questionnaire:\n ${error}`)
     }
 }
