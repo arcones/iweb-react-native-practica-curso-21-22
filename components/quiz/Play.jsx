@@ -118,7 +118,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     return (
         <>
             <QuizAppBar barTitle={`Trivial - Pregunta ${currentQuiz + 1}`} onWhat={currentQuiz} />
-            <Stack spacing={2} style={styles.quizPadding} fill>
+            <Stack spacing={Platform.OS === 'android' ? 3 : 5} style={styles.quizPadding} fill>
                 <HStack style={styles.quizCentered} spacing={6}>
                     <ResizableText style={styles.quizCentered} numberOfLines={2} text={safeQuizQuestion()} />
                 </HStack>
@@ -133,7 +133,7 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
 
                 <TextInput style={styles.quizTextInput} value={inputs.get(currentQuiz)} onChangeText={(text) => storeResponse(text)} placeholder="Escriba su respuesta..." />
 
-                <HStack style={styles.quizCentered} spacing={1}>
+                <HStack style={styles.quizCentered} spacing={Platform.OS === 'android' ? 2 : 3}>
                     <Button title="Guardar" onPress={saveQuizzes} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="save" {...props} />} />
                     <Button title="Restaurar" onPress={restoreQuizzes} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="folder-open" {...props} />} />
                     <Button title="Eliminar" onPress={removeQuestionnaire} color={PINK} variant="outlined" uppercase={false} compact={true} leading={props => <Ionicons name="trash" {...props} />} />

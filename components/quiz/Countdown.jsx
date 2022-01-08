@@ -1,11 +1,13 @@
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { Animated } from 'react-native';
 import { PINK, TEAL, ORANGE, styles } from '../Styles'
+import { Platform } from 'react-native';
+
 
 const Countdown = ({ submit, timeLeft }) => {
 
     return (
-        <CountdownCircleTimer size={100} isPlaying={true} duration={timeLeft}
+        <CountdownCircleTimer size={Platform.OS === 'ios' ? 150 : 100} isPlaying={true} duration={timeLeft}
             colors={[
                 [TEAL, 0.4],
                 [PINK, 0.4],

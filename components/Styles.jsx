@@ -32,8 +32,8 @@ export const styles = StyleSheet.create({
         height: 250,
     },
     quizMediumImage: {
-        width: 120,
-        height: 120,
+        width:  Platform.OS === 'android' ? 130 : 200,
+        height: Platform.OS === 'android' ? 130 : 200,
         borderRadius: 5
     },
     quizAvatarContainer: {
