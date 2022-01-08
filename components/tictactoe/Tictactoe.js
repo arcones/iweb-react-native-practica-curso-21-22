@@ -1,15 +1,19 @@
 import { View, Text } from 'react-native';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Header from './Header.jsx';
 import Board from './Board.jsx';
 import Reset from './Reset.jsx';
 import { styles } from '../Styles.js';
-
-const PLAYERX = "Player 1 - Xs";
-const PLAYER0 = "Player 2 - 0s";
+import { LangContext } from '../../App.jsx';
 
 export default function App() {
+
+  const contextValue = useContext(LangContext);
+
+  const PLAYERX = `${contextValue.dictionary.tictactoe_player_turn} 1 - Xs`;
+  const PLAYER0 = `${contextValue.dictionary.tictactoe_player_turn} 2 - Os`;
+
   const [turn, setTurn] = useState(PLAYERX);
   const [moves, setMoves] = useState(0);
   const [values, setValues] = useState([
@@ -50,7 +54,6 @@ export default function App() {
   }
 
   return (
-
     <View style={styles.tictactoeMargin}>
       <Header text={turn} />
       <Board values={values} appClick={appClick} />

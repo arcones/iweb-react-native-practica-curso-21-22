@@ -3,7 +3,7 @@ import {Text, StyleSheet} from 'react-native';
 
 export default function Header(props) {
     return (
-      <Text style={styles.header}>Turn: {props.text}</Text>
+      <Text style={styles.header}>{props.text}</Text>
     );
 }
 

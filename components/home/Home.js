@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, Banner, HStack, Button, Avatar, Divider, VStack } from "@react-native-material/core";
+import { Text, Banner, HStack, Button, Avatar, VStack } from "@react-native-material/core";
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'react-native';
 import { PacmanIndicator } from 'react-native-indicators'
@@ -27,10 +27,7 @@ const Home = () => {
                 <HStack>
                     <Image style={styles.homeGraffiti} source={require('./img/logo.jpg')} />
                 </HStack>
-                <Divider />
-                <Text variant="subtitle1" style={styles.homeMargin}>Te damos la bienvenida a la aplicación</Text>
-                <Text variant="subtitle2" style={styles.homeMargin}>Pulsa las pestañas para moverte por los juegos</Text>
-                <Divider />
+
                 <Banner
                     illustration={props => (
                         <Avatar
@@ -42,12 +39,13 @@ const Home = () => {
                     text={contextValue.dictionary.home_quotes[quoteIndex]}
                     buttons={
                         <HStack>
-                            <Button variant="text" title="Siguiente cita" onPress={updateQuoteAndIcon} compact />
+                            <Button variant="text" title={contextValue.dictionary.home_next_quote} onPress={updateQuoteAndIcon} compact />
                         </HStack>
                     }
                 />
+                <Text variant="subtitle3" style={styles.homeMargin}>{contextValue.dictionary.home_subtitle}</Text>
                 <HStack fill center>
-                    <PacmanIndicator color={ORANGE} size={120} />
+                    <PacmanIndicator color={ORANGE} size={100} />
                 </HStack>
             </VStack>
         </>
