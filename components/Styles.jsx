@@ -82,6 +82,29 @@ export const styles = StyleSheet.create({
         marginHorizontal: 25,
         marginBottom: 25,
         marginTop: 10
+    },
+    tictactoeSquare: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: PINK,
+        backgroundColor: PALE_PINK
+    },
+    tictactoeSquareText: {
+        fontSize: 50,
+        color: PURPLE
+    },
+    tictactoeBoard: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+    },
+    tictactoeBoardRow: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 })
 

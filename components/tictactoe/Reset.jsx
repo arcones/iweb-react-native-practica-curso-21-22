@@ -9,7 +9,7 @@ export default function Reset(props) {
   }
 
   return(
-    <Button title="Reset" color={PINK} tintColor="white" onPress={click} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
+    <Button title="Reiniciar" color={PINK} tintColor="white" onPress={click} trailing={props => <Ionicons name="color-wand-outline" {...props} />} />
   );
     
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import Square from './Square';
-import {View, StyleSheet} from 'react-native';
+import { View } from 'react-native';
+import { styles } from '../Styles';
+
 
 export default function Board(props) {
   function boardClick(rowNumber, columnNumber) {
@@ -8,37 +10,23 @@ export default function Board(props) {
   }
 
   let board = props.values.map((rowValues, rowIndex) => {
-  let row = rowValues.map((value, columnIndex) => {
+    let row = rowValues.map((value, columnIndex) => {
       return (
-          <Square value={value} key={rowIndex + "-" + columnIndex} rowIndex={rowIndex}
-                  columnIndex={columnIndex} boardClick={boardClick}/>
+        <Square value={value} key={rowIndex + "-" + columnIndex} rowIndex={rowIndex}
+          columnIndex={columnIndex} boardClick={boardClick} />
       );
-   });
-   return (
-      <View style={styles.boardRow} key={"row" + rowIndex}>
+    });
+    return (
+      <View style={styles.tictactoeBoardRow} key={"row" + rowIndex}>
         {row}
       </View>
     );
   });
 
   return (
-     <View style={styles.board}>
+    <View style={styles.tictactoeBoard}>
       {board}
-     </View>
+    </View>
   );
-  
+
 }
-
-const styles = StyleSheet.create({
-  board: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between'
-  },
-  boardRow: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
-
-});

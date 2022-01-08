@@ -1,39 +1,27 @@
 import { View, Text } from 'react-native';
 
-import React, { useState, useEffect } from 'react';
-import Header from './Header.jsx';
+import React, { useState } from 'react';
 import Board from './Board.jsx';
 import Reset from './Reset.jsx';
 import { styles } from '../Styles.jsx';
+import { AppBar } from '@react-native-material/core';
 
 export default function App() {
 
-  const PLAYERX = "Jugador/a 1 - Xs";
-  const PLAYER0 = "Jugador/a 2 - Os";
+  const PLAYERX = "Jugador 1   🤍";
+  const PLAYER0 = "Jugador 2   🟨";
 
   const [turn, setTurn] = useState(PLAYERX);
   const [moves, setMoves] = useState(0);
   const [values, setValues] = useState([
-    ['-', '-', '-'],
-    ['-', '-', '-'],
-    ['-', '-', '-']
+    ['➖', '➖', '➖'],
+    ['➖', '➖', '➖'],
+    ['➖', '➖', '➖']
   ]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("http://myjson.dit.upm.es/api/bins/ccr5");
-      const myjson = await res.json();
-      setTurn(myjson.turn);
-      setMoves(myjson.moves);
-      setValues(myjson.values);
-    }
-
-    fetchData();
-  }, []);
 
   function appClick(rowNumber, columnNumber) {
     let valuesCopy = JSON.parse(JSON.stringify(values));
-    let newMovement = turn === PLAYERX ? 'X' : '0';
+    let newMovement = turn === PLAYERX ? '🤍' : '🟨';
     valuesCopy[rowNumber][columnNumber] = newMovement;
     setTurn(turn === PLAYERX ? PLAYER0 : PLAYERX);
     setValues(valuesCopy);
@@ -44,21 +32,23 @@ export default function App() {
     setTurn(PLAYERX);
     setMoves(0);
     setValues([
-      ['-', '-', '-'],
-      ['-', '-', '-'],
-      ['-', '-', '-']
+      ['➖', '➖', '➖'],
+      ['➖', '➖', '➖'],
+      ['➖', '➖', '➖']
     ]);
   }
 
-  let text = `Turno: ${turn}` ;
+  let text = `Turno: ${turn}`;
 
   return (
-    <View style={styles.tictactoeMargin}>
-      <Header text={text} />
-      <Board values={values} appClick={appClick} />
-      <Text style={styles.tictactoeText}>Número de movimientos: {moves}</Text>
-      <Reset resetClick={resetClick}></Reset>
-    </View>
+    <>
+      <AppBar title={text}></AppBar>
+      <View style={styles.tictactoeMargin}>
+        <Board values={values} appClick={appClick} />
+        <Text style={styles.tictactoeText}>Número de movimientos: {moves}</Text>
+        <Reset resetClick={resetClick}></Reset>
+      </View>
+    </>
   );
 
 
