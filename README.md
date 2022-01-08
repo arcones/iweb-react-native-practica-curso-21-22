@@ -15,9 +15,25 @@ Then follow instructions on the console to run it either on physicall or emulate
 ## Some screenshots
 
 ### iPhone
-TODO
+#### Splash Screen
+![ios splash screen](./img/iosSplashScreen.png "iOS Splash Screen")
+#### Home Screen
+![ios home creen](./img/androidHome.png "iOS Home Screen")
+#### Tictactoe Game
+![ios tictactoe game](./img/androidTictactoe.png "iOS Tictactoe Game")
+#### Quiz Game
+##### Quiz Question
+![ios quiz game question](./img/androidQuizQuestion.png "iOS Quiz Game Question")
+##### Quiz Loading
+![ios quiz game loading](./img/androidQuizLoading.png "iOS Quiz Game Loading")
+##### Quiz Scores
+![ios quiz game scores](./img/androidQuizScores.png "iOS Quiz Game Scores")
+##### Quiz Restore Confirmation
+![ios quiz game restore confirmation](./img/androidQuizRestoreConfirmation.png "iOS Quiz Game Restore Confirmation")
 
 ### Android
+#### Splash Screen
+![android splash screen](./img/androidSplashScreen.png "Android Splash Screen")
 #### Home Screen
 ![android home creen](./img/androidHome.png "Android Home Screen")
 #### Tictactoe Game
