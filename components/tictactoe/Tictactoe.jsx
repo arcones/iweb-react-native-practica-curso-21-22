@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import Header from './Header.jsx';
 import Board from './Board.jsx';
 import Reset from './Reset.jsx';
-import { styles } from '../Styles.js';
+import { styles } from '../Styles.jsx';
 import { LangContext } from '../../App.jsx';
 
 export default function App() {
