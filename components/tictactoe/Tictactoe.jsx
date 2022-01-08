@@ -11,8 +11,8 @@ export default function App() {
 
   const contextValue = useContext(LangContext);
 
-  const PLAYERX = `${contextValue.dictionary.tictactoe_player_turn} 1 - Xs`;
-  const PLAYER0 = `${contextValue.dictionary.tictactoe_player_turn} 2 - Os`;
+  const PLAYERX = `${contextValue.dictionary.tictactoe_player} 1 - Xs`;
+  const PLAYER0 = `${contextValue.dictionary.tictactoe_player} 2 - Os`;
 
   const [turn, setTurn] = useState(PLAYERX);
   const [moves, setMoves] = useState(0);
@@ -53,11 +53,13 @@ export default function App() {
     ]);
   }
 
+  let text = `${contextValue.dictionary.tictactoe_turn}: ${turn}` ;
+
   return (
     <View style={styles.tictactoeMargin}>
-      <Header text={turn} />
+      <Header text={text} />
       <Board values={values} appClick={appClick} />
-      <Text style={styles.tictactoeText}>Number of moves: {moves}</Text>
+      <Text style={styles.tictactoeText}>{contextValue.dictionary.tictactoe_moves}{moves}</Text>
       <Reset resetClick={resetClick}></Reset>
     </View>
   );

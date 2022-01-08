@@ -1,4 +1,4 @@
-import QuizGame from './quiz/QuizGame';
+import Main from './quiz/Main';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Home from './home/Home';
@@ -26,7 +26,7 @@ export default function Landing({ lang, setLang }) {
                 <Tab.Navigator>
                     <Tab.Screen name={contextValue.dictionary.navbar_item1} component={Home} />
                     <Tab.Screen name={contextValue.dictionary.navbar_item2} component={Tictactoe} />
-                    <Tab.Screen name={contextValue.dictionary.navbar_item3} component={QuizGame} />
+                    <Tab.Screen name={contextValue.dictionary.navbar_item3} component={Main} />
                 </Tab.Navigator>
             </NavigationContainer>
         </SafeAreaView>

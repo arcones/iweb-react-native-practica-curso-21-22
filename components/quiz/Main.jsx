@@ -6,7 +6,7 @@ import Emoji from 'react-native-emoji';
 import { PURPLE, PALE_PINK, styles } from '../Styles';
 import { getNextEmojiIfLastWasPresentOrFallback } from './util/EmojiManagement';
 
-const QuizGame = () => {
+const Main = () => {
 
     const [score, setScore] = useState(0);
     const [currentQuiz, setCurrentQuiz] = useState(0);
@@ -54,4 +54,4 @@ const QuizGame = () => {
     )
 }
 
-export default QuizGame
+export default Main
