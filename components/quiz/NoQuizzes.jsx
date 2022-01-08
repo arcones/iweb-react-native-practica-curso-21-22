@@ -1,13 +1,18 @@
-import {  Banner } from "@react-native-material/core";
-import {PacmanIndicator } from 'react-native-indicators'
-import { TEAL } from "../Styles";
+import { HStack, Snackbar } from "@react-native-material/core";
+import { PacmanIndicator } from 'react-native-indicators'
+import { styles, TEAL } from "../Styles";
+import { Platform } from 'react-native';
 
 const NoQuizzes = () => {
     return (
-
         <>
-            <Banner text="Intentando cargar más preguntas..." />
-            <PacmanIndicator color={TEAL} size={160} />
+            <HStack fill>
+                <PacmanIndicator color={TEAL} size={Platform.OS === 'ios' ? 250 : 200} />
+            </HStack>
+            <Snackbar
+                message="Intentando cargar más preguntas..."
+                style={styles.quizNoQuizzesSnackBar}
+            />
         </>
     )
 }

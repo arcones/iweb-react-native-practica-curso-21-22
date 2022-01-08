@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Text, Banner, HStack, Button, Avatar, VStack } from "@react-native-material/core";
+import { Text, Banner, HStack, Button, Avatar, VStack, Stack } from "@react-native-material/core";
 import { Ionicons } from '@expo/vector-icons';
-import { Image } from 'react-native';
+import { Image, Platform } from 'react-native';
 import { PacmanIndicator } from 'react-native-indicators'
 import { ORANGE, styles } from '../Styles';
 
@@ -38,33 +38,32 @@ const Home = () => {
     }
 
     return (
-        <>
+        <Stack fill center>
             <VStack fill>
                 <HStack>
                     <Image style={styles.homeGraffiti} source={require('./img/logo.jpg')} />
                 </HStack>
-
-                <Banner
-                    illustration={props => (
-                        <Avatar
-                            color="primary"
-                            icon={props => <Ionicons name={icon} {...props} />}
-                            {...props}
-                        />
-                    )}
-                    text={QUOTES[quoteIndex]}
-                    buttons={
-                        <HStack>
-                            <Button variant="text" title="Siguiente cita" onPress={updateQuoteAndIcon} compact />
-                        </HStack>
-                    }
-                />
-                <Text variant="subtitle1" style={styles.homeMargin}>Pulse las pestañas para jugar al juego que más le apetezca</Text>
-                <HStack fill center>
-                    <PacmanIndicator color={ORANGE} size={100} />
-                </HStack>
+                <VStack fill>
+                    <Banner
+                        illustration={props => (
+                            <Avatar
+                                color="primary"
+                                icon={props => <Ionicons name={icon} {...props} />}
+                                {...props}
+                            />
+                        )}
+                        text={QUOTES[quoteIndex]}
+                        buttons={
+                            <HStack>
+                                <Button variant="text" title="Siguiente cita" onPress={updateQuoteAndIcon} compact />
+                            </HStack>
+                        }
+                    />
+                </VStack>
+                <Text variant={Platform.OS === 'ios' ? "h5" : "subtitle1"} style={styles.homeMargin}>Pulse las pestañas para jugar al juego que más le apetezca</Text>
+                <PacmanIndicator color={ORANGE} size={Platform.OS === 'ios' ? 250 : 200} />
             </VStack>
-        </>
+        </Stack>
     )
 }
 
