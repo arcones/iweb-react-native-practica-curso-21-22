@@ -62,7 +62,8 @@ const Play = ({ setScore, currentQuiz, setCurrentQuiz, quizzes, setFinished, set
     }
 
     const getAuthorNameIfPossible = () => {
-        return quizzes[currentQuiz]?.author?.username ?? "Anónimo" ?? quizzes[currentQuiz].author.username
+        let usernameOrProfileName =  quizzes[currentQuiz]?.author?.username ?? quizzes[currentQuiz]?.author?.profileName
+        return usernameOrProfileName ? usernameOrProfileName : "Anónimo"
     }
 
     const safeQuizQuestion = () => {
