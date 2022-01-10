@@ -1,4 +1,4 @@
-import Main from './quiz/Main';
+import QuizModeSelector from './quiz/QuizModeSelector';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Home from './home/Home';
@@ -16,7 +16,7 @@ export default function Landing() {
                 <Tab.Navigator>
                     <Tab.Screen name="Inicio" component={Home} />
                     <Tab.Screen name="Tres en raya" component={Tictactoe} />
-                    <Tab.Screen name="Trivial" component={Main} />
+                    <Tab.Screen name="Trivial" component={QuizModeSelector} />
                 </Tab.Navigator>
             </NavigationContainer>
         </SafeAreaView>
