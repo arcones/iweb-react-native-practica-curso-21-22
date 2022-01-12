@@ -1,4 +1,4 @@
-# my-native-games
+# react-native-games-app
 
 Awesome application to play some games in your smartphone (iOS or Android)
 
